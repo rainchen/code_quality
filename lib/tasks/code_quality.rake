@@ -58,8 +58,35 @@ namespace :code_quality do
   task :quality_audit => [:"quality_audit:default"] do; end
   namespace :quality_audit do
     # default tasks
-    task :default do
-      puts "PENDING"
+    task :default => [:rubycritic] do; end
+
+    # desc "prepare dir"
+    task :prepare => :helpers do
+      @report_dir = "tmp/code_quality/quality_audit"
+      prepare_dir @report_dir
+
+      def report_dir
+        @report_dir
+      end
+    end
+
+    desc "rubycritic"
+    # e.g.: rake code_quality:quality_audit:rubycritic lowest_score=94.5
+    task :rubycritic => :prepare do
+      options = options_from_env(:lowest_score)
+      run_audit "Rubycritic - static analysis gems such as Reek, Flay and Flog to provide a quality report of your Ruby code." do
+        report = `rubycritic -p #{report_dir}/rubycritic app lib`
+        puts report
+
+        # if config lowest_score then audit it with report score
+        if options[:lowest_score]
+          if report.last(20) =~ /Score: (.+)/
+            report_score = $1.to_f
+            lowest_score = options[:lowest_score].to_f
+            audit_faild "Report score #{colorize(report_score, :yellow)} is lower then #{colorize(lowest_score, :yellow)}, must improve your code quality or set a higher #{colorize("lowest_score", :black, :white)}" if report_score < lowest_score
+          end
+        end
+      end
     end
   end
 
@@ -98,7 +125,27 @@ namespace :code_quality do
     end
 
     def audit_faild(msg)
-      abort "[AUDIT FAILED] #{msg}"
+      flag = colorize("[AUDIT FAILED]", :red, :yellow)
+      abort "#{flag} #{msg}"
+    end
+
+    # e.g.: options_from_env(:a, :b) => {:a => ..., :b => ... }
+    def options_from_env(*keys)
+      ENV.to_h.slice(*keys.map(&:to_s)).symbolize_keys!
+    end
+
+    # set text color, background color using ANSI escape sequences, e.g.:
+    #   colors = %w(black red green yellow blue pink cyan white default)
+    #   colors.each { |color| puts colorize(color, color) }
+    #   colors.each { |color| puts colorize(color, :green, color) }
+    def colorize(text, color = "default", bg = "default")
+      colors = %w(black red green yellow blue pink cyan white default)
+      fgcode = 30; bgcode = 40
+      tpl = "\e[%{code}m%{text}\e[0m"
+      cov = lambda { |txt, col, cod| tpl % {text: txt, code: (cod+colors.index(col.to_s))} }
+      ansi = cov.call(text, color, fgcode)
+      ansi = cov.call(ansi, bg, bgcode) if bg.to_s != "default"
+      ansi
     end
   end
 
