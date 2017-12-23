@@ -1,0 +1,3 @@
+# https://github.com/rails/rails/blob/master/.rubocop.yml
+inherit_from:
+  - https://rawgit.com/rails/rails/master/.rubocop.yml
