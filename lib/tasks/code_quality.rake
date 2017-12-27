@@ -58,7 +58,7 @@ namespace :code_quality do
   task :quality_audit => [:"quality_audit:default"] do; end
   namespace :quality_audit do
     # default tasks
-    task :default => [:rubycritic, :rubocop] do; end
+    task :default => [:rubycritic, :rubocop, :metric_fu] do; end
 
     # desc "prepare dir"
     task :prepare => :helpers do
@@ -131,6 +131,66 @@ namespace :code_quality do
         end
       end
     end
+
+    desc "metric_fu - many kinds of metrics"
+    # e.g.: rake code_quality:quality_audit:metric_fu metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=9 roodi_max_offenses=10
+    # options:
+    #   metrics: default to run all metrics, can be config as: cane,churn,flay,flog,hotspots,rails_best_practices,rcov,reek,roodi,saikuro,stats
+    #   flay_max_offenses: offenses number for audit
+    #   cane_max_offenses: offenses number for audit
+    #   rails_best_practices_max_offenses: offenses number for audit
+    #   reek_max_offenses: offenses number for audit
+    #   roodi_max_offenses: offenses number for audit
+    task :metric_fu => :prepare do
+      metrics_offenses_patterns = {
+        "flay" => /Total Score (\d+)/,
+        "cane" => /Total Violations (\d+)/,
+        "rails_best_practices" => /Found (\d+) errors/,
+        "reek" => /Found (\d+) code smells/,
+        "roodi" => /Found (\d+) errors/,
+      }
+      metrics_have_offenses = metrics_offenses_patterns.keys.map { |metric| "#{metric}_max_offenses".to_sym }
+      options = options_from_env(:metrics, *metrics_have_offenses)
+      run_audit "metric_fu - Code metrics from Flog, Flay, Saikuro, Churn, Reek, Roodi, Code Statistics, and Rails Best Practices. (and optionally RCov)" do
+        report_path = "#{report_dir}/metric_fu"
+        available_metrics = %w{cane churn flay flog hotspots rails_best_practices rcov reek roodi saikuro stats}
+        metric_fu_opts = ""
+        selected_metrics = available_metrics
+        if options[:metrics]
+          selected_metrics = options[:metrics].split(",")
+          disable_metrics = available_metrics - selected_metrics
+          selected_metrics_opt = selected_metrics.map { |m| "--#{m}" }.join(" ")
+          disable_metrics_opt = disable_metrics.map { |m| "--no-#{m}" }.join(" ")
+          metric_fu_opts = "#{selected_metrics_opt} #{disable_metrics_opt}"
+          puts "for metrics: #{selected_metrics.join(",")}"
+        end
+        # geneate report
+        report = `bundle exec metric_fu --no-open #{metric_fu_opts}`
+        FileUtils.remove_dir(report_path) if Dir.exists? report_path
+        FileUtils.mv("tmp/metric_fu/output", report_path, force: true)
+        puts report
+        puts "Report generated to #{report_path}"
+        show_in_browser File.realpath(report_path)
+
+        # audit report result
+        report_result_path = "tmp/metric_fu/report.yml"
+        if File.exists? report_result_path
+          report_result = YAML.load_file(report_result_path)
+          # if config #{metric}_max_offenses then audit it with report result
+          audit_failures = []
+          metrics_offenses_patterns.each do |metric, pattern|
+            option_key = "#{metric}_max_offenses".to_sym
+            if options[option_key]
+              detected_offenses = report_result[metric.to_sym][:total].to_s.match(pattern)[1].to_i rescue 0
+              max_offenses = options[option_key].to_i
+              puts "Metric #{colorize(metric, :green)} detected offenses #{colorize(detected_offenses, :yellow)} is more then #{colorize(max_offenses, :yellow)}, must improve your code quality or set a lower #{colorize(option_key, :black, :white)}" if detected_offenses > max_offenses
+              audit_failures << {metric: metric, detected_offenses: detected_offenses, max_offenses: max_offenses}
+            end
+          end
+          audit_faild "#{audit_failures.size} of #{selected_metrics.size} metrics audit failed" if audit_failures.any?
+        end
+      end
+    end
   end
 
   # desc "helper methods"
@@ -189,6 +249,16 @@ namespace :code_quality do
       ansi = cov.call(text, color, fgcode)
       ansi = cov.call(ansi, bg, bgcode) if bg.to_s != "default"
       ansi
+    end
+
+    def show_in_browser(dir)
+      require "launchy"
+      uri = URI.join(URI.escape("file://#{dir}/"), "index.html")
+      Launchy.open(uri) if open_in_browser?
+    end
+
+    def open_in_browser?
+      ENV["CI"].nil?
     end
   end
 

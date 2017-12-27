@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rubycritic", "~> 3.3.0"
   spec.add_dependency "rubocop", "~> 0.52.0"
   spec.add_dependency "rubocop-github", "~> 0.8.1"
+  spec.add_dependency "code_metric_fu", "~> 4.14.3"
 
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
