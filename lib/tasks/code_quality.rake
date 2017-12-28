@@ -184,8 +184,10 @@ namespace :code_quality do
             if options[option_key]
               detected_offenses = report_result[metric.to_sym][:total].to_s.match(pattern)[1].to_i rescue 0
               max_offenses = options[option_key].to_i
-              puts "Metric #{colorize(metric, :green)} detected offenses #{colorize(detected_offenses, :yellow)} is more then #{colorize(max_offenses, :yellow)}, must improve your code quality or set a lower #{colorize(option_key, :black, :white)}" if detected_offenses > max_offenses
-              audit_failures << {metric: metric, detected_offenses: detected_offenses, max_offenses: max_offenses}
+              if detected_offenses > max_offenses
+                puts "Metric #{colorize(metric, :green)} detected offenses #{colorize(detected_offenses, :yellow)} is more then #{colorize(max_offenses, :yellow)}, must improve your code quality or set a lower #{colorize(option_key, :black, :white)}"
+                audit_failures << {metric: metric, detected_offenses: detected_offenses, max_offenses: max_offenses}
+              end
             end
           end
           audit_faild "#{audit_failures.size} of #{selected_metrics.size} metrics audit failed" if audit_failures.any?
