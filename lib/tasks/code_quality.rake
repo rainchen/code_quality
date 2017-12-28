@@ -120,6 +120,7 @@ namespace :code_quality do
         report = `rubocop -c #{config_file} -S -R -P #{options[:cli_options]} --format offenses --format html -o #{report_path}`
         puts report
         puts "Report generated to #{report_path}"
+        show_in_browser File.realpath(report_path)
 
         # if config max_offenses then audit it with detected offenses number in report
         if options[:max_offenses]
@@ -253,7 +254,10 @@ namespace :code_quality do
 
     def show_in_browser(dir)
       require "launchy"
-      uri = URI.join(URI.escape("file://#{dir}/"), "index.html")
+      uri = URI.escape("file://#{dir}/")
+      if File.directory?(dir)
+        uri = URI.join(uri, "index.html")
+      end
       Launchy.open(uri) if open_in_browser?
     end
 
