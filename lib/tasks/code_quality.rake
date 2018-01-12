@@ -53,12 +53,11 @@ namespace :code_quality do
     end
   end
 
-  # TODO: code quality audit
   desc "code quality audit"
   task :quality_audit => [:"quality_audit:default"] do; end
   namespace :quality_audit do
     # default tasks
-    task :default => [:rubycritic, :rubocop, :metric_fu] do; end
+    task :default => [:rubycritic, :rubocop, :metric_fu, :resources] do; end
 
     # desc "prepare dir"
     task :prepare => :helpers do
@@ -193,6 +192,21 @@ namespace :code_quality do
           audit_faild "#{audit_failures.size} of #{selected_metrics.size} metrics audit failed" if audit_failures.any?
         end
       end
+    end
+
+    # desc "resources url"
+    task :resources do
+      refs = %w{
+        http://awesome-ruby.com/#-code-analysis-and-metrics
+        https://github.com/whitesmith/rubycritic
+        https://github.com/bbatsov/rubocop
+        https://github.com/bbatsov/ruby-style-guide
+        https://github.com/github/rubocop-github
+        https://github.com/metricfu/metric_fu
+        https://rails-bestpractices.com
+      }
+      puts "## Code Quality Resources"
+      puts refs.map { |url| "  - #{url}" }
     end
   end
 
