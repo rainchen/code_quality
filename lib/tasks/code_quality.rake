@@ -38,6 +38,7 @@ namespace :code_quality do
 
     desc "brakeman"
     task :brakeman => :prepare do
+      require 'json'
       run_audit "Brakeman audit - checks Ruby on Rails applications for security vulnerabilities" do
         `brakeman -o #{report_dir}/brakeman-report.txt -o #{report_dir}/brakeman-report.json`
         puts `cat #{report_dir}/brakeman-report.txt`
@@ -83,8 +84,10 @@ namespace :code_quality do
     task :rubycritic => :prepare do
       options = options_from_env(:lowest_score)
       run_audit "Rubycritic - static analysis gems such as Reek, Flay and Flog to provide a quality report of your Ruby code." do
-        report = `rubycritic -p #{report_dir}/rubycritic app lib`
+        report = `rubycritic -p #{report_dir}/rubycritic app lib --no-browser`
         puts report
+        report_path = "#{report_dir}/rubycritic/overview.html"
+        show_in_browser File.realpath(report_path)
 
         # if config lowest_score then audit it with report score
         if options[:lowest_score]
@@ -229,6 +232,7 @@ namespace :code_quality do
     end
 
     def realtime(&block)
+      require 'benchmark'
       realtime = Benchmark.realtime do
         block.call
       end.round
@@ -260,7 +264,8 @@ namespace :code_quality do
 
     # e.g.: options_from_env(:a, :b) => {:a => ..., :b => ... }
     def options_from_env(*keys)
-      ENV.to_h.slice(*keys.map(&:to_s)).symbolize_keys!
+      # ENV.to_h.slice(*keys.map(&:to_s)).symbolize_keys! # using ActiveSupport
+      ENV.to_h.inject({}) { |opts, (k, v)| keys.include?(k.to_sym) ? opts.merge({k.to_sym => v}) : opts }
     end
 
     # set text color, background color using ANSI escape sequences, e.g.:
