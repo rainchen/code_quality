@@ -187,6 +187,7 @@ namespace :code_quality do
         # audit report result
         report_result_path = "tmp/metric_fu/report.yml"
         if File.exists? report_result_path
+          require 'yaml'
           report_result = YAML.load_file(report_result_path)
           # if config #{metric}_max_offenses then audit it with report result
           audit_failures = []
