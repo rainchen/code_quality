@@ -2,6 +2,9 @@
 
 Run code quality and security audit report with one rake task as `rake code_quality`.
 
+[![Gem Version](https://badge.fury.io/rb/code_quality.svg)](https://badge.fury.io/rb/code_quality)
+[![Build Status](https://travis-ci.org/rainchen/code_quality.svg)](https://travis-ci.org/rainchen/code_quality)
+
 ## Principle
 
 > If you can’t measure it, you can’t improve it.
