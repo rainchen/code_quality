@@ -94,6 +94,12 @@ Gitlab-CI pipeline example:
 
 ![](doc/imgs/code_security_audit_faild_on_ci_example.png)
 
+Then Gitlab sends notification with the failure info, for example:
+
+![](doc/imgs/code_security_audit_faild_gitlab_notification_example.png)
+
+[Tips] Code analyzers are your friends for writing secure code, since they're diligent and they don't get tired, thirsty, hungry, or bored.
+
 
 #### Each sub task can be run separately
 
