@@ -3,3 +3,13 @@ language: ruby
 rvm:
   - 2.4.3
 before_install: gem install bundler -v 1.16.0
+
+# automatically release Ruby gem to RubyGems after a successful build with `git push --tags`
+deploy:
+  provider: rubygems
+  api_key:
+    secure: mzjlQXKByIn4jdGzUayX65Xqnl9zSkvJJZZnoqZuVnRjz93veVm9mwfUGGcSNQj9dvQTedrxMLyOKINJMIH+SlveHUeU04a7QxbM6i7o+sWRFEq98p7DauSpJJTB4fDINSwjcHU8t43PjhBItA6n4PLUrCuIzXqxvY4VLHgGLGkXV17ngdHBRRFFDuMS0npsTLLfaqaFtyYx/mer/z9pSGR9g4ETsfVFSBNafPfDAoXfK3WRLbqS8EkB7SXCSliOUuzLBEOSLy8xMOAS682dEsPZzUvUGBMrXLYhxVBECfzAMzk2VxRX0MujJxzQyGiKZUShLkDVSulkah+aHhcMqcQ0VewcELihNj86tPEtT7Uiwd6aSe0J9WrgeVE2jkaPcIZyN3eAfZ4QhQrdrHeCnjmhcMsKopzc4FLOq9B7j1WCbmeGx3scXsZkjcugwnAUm07imlUQzHO85tVxZuDbPvBQ/J/vBhuUIl1E7ptUx0eUXrVWTGDsM7RIgt87O96QXthGgVg9NYmTmvMAjts8W0zfhAQIc/13QZUYvXQ6qX95Xu4RkmeTX7T63hpqKlwSCbYbQTBF3T5X9xyKkeF0BLHZ1jMIyoOoKZFsZL+ESrpCEeq8ZDaod6Az2rIa3KgszKxV/w5vyIInhg+lzX9RF5JL8X9q9hVEvIIx5BGQWXI=
+  gem: code_quality
+  on:
+    tags: true
+    repo: rainchen/code_quality
