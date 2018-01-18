@@ -228,7 +228,11 @@ namespace :code_quality do
     def run_audit(title, &block)
       puts "## #{title}"
       puts "", "```"
-      realtime(&block)
+      begin
+        realtime(&block)
+      rescue SystemExit => e
+        # audit faild
+      end
       puts "```", ""
     end
 
