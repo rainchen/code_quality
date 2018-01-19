@@ -25,4 +25,5 @@ deploy:
     script: bin/travis-update-gh-pages.sh
     on:
       branch: master
+      tags: true
     condition: $TRAVIS_PULL_REQUEST = "false"
