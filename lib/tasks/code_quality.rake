@@ -253,9 +253,9 @@ namespace :code_quality do
         report_path: "",
         failure: "",
       }
-
       puts "## #{title}"
       puts "", "```"
+      exc = nil
       begin
         realtime(&block)
       rescue SystemExit => exc
@@ -266,6 +266,7 @@ namespace :code_quality do
         @audit_tasks[task_name][:report_path] = @report_path.sub("tmp/code_quality/", "")
       end
       puts "```", ""
+      raise exc if exc
     end
 
     def realtime(&block)

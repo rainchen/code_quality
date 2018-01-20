@@ -11,10 +11,16 @@ RSpec.describe CodeQuality do
     Rake::Task.send :load, 'tasks/code_quality.rake'
   end
 
-  def run_rake(task_name)
-    ENV["CI"] = 'true'
-    Rake::Task[task_name].reenable
-    Rake::Task[task_name].invoke
+  def run_rake(task_name, options = {})
+    env = {"CI" => "true"}
+    if !options[:env].to_s.empty?
+      env_options = parse_env(options[:env])
+      env.merge!(env_options) if env_options.any?
+    end
+    wrap_env(env) do
+      Rake::Task[task_name].reenable
+      Rake::Task[task_name].invoke
+    end
   end
 
   it "load rake task" do
@@ -42,6 +48,11 @@ RSpec.describe CodeQuality do
 
     it ":quality_audit:metric_fu" do
       expect { run_rake 'code_quality:quality_audit:metric_fu' }.to output(/## metric_fu/).to_stdout
+    end
+
+    # Audit task should return non-zero exit status and showing failure reason when passing an audit value option and the value is lower than the result in report
+    it "return non-zero exit status if failed" do
+      expect { run_rake "code_quality:quality_audit:rubocop", env: "max_offenses=0" }.to raise_error(SystemExit)
     end
   end
 end
