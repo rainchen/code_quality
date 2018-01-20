@@ -111,7 +111,7 @@ namespace :code_quality do
 
         # if config lowest_score then audit it with report score
         if options[:lowest_score]
-          if report.last(20) =~ /Score: (.+)/
+          if report[-20..-1] =~ /Score: (.+)/
             report_score = $1.to_f
             lowest_score = options[:lowest_score].to_f
             audit_faild "Report score #{colorize(report_score, :yellow)} is lower then #{colorize(lowest_score, :yellow)}, must improve your code quality or set a higher #{colorize("lowest_score", :black, :white)}" if report_score < lowest_score
@@ -155,7 +155,7 @@ namespace :code_quality do
 
         # if config max_offenses then audit it with detected offenses number in report
         if options[:max_offenses]
-          if report.last(20) =~ /(\d+) *Total/
+          if report[-20..-1] =~ /(\d+) *Total/
             detected_offenses = $1.to_i
             max_offenses = options[:max_offenses].to_i
             audit_faild "Detected offenses #{colorize(detected_offenses, :yellow)} is more then #{colorize(max_offenses, :yellow)}, must improve your code quality or set a lower #{colorize("max_offenses", :black, :white)}" if detected_offenses > max_offenses
