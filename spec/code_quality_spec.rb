@@ -34,8 +34,11 @@ RSpec.describe CodeQuality do
   describe "rake code_quality", type: :task do
     before { Rake::Task.clear; load_rake_tasks }
 
+    # TODO: suppress output from bundler_audit and warning from rubocop
     it "work for ruby project" do
-      expect { run_rake 'code_quality' }.not_to raise_error
+      expect {
+        expect { run_rake 'code_quality' }.not_to raise_error
+      }.to output(/# Code Quality Report/).to_stdout
     end
 
     it ":quality_audit:rubycritic" do
@@ -52,7 +55,7 @@ RSpec.describe CodeQuality do
 
     # Audit task should return non-zero exit status and showing failure reason when passing an audit value option and the value is lower than the result in report
     it "return non-zero exit status if failed" do
-      expect { run_rake "code_quality:quality_audit:rubocop", env: "max_offenses=0" }.to raise_error(SystemExit)
+      expect { run_rake "code_quality:quality_audit:rubocop", env: "max_offenses=0" }.to raise_error(SystemExit).and output.to_stdout.and output(/max_offenses/).to_stderr
     end
 
     context 'quality_audit with option' do
