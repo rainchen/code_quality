@@ -367,7 +367,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
       <div class="infobox">
         <div class="total">
           11 files inspected,
-          53 offenses detected:
+          58 offenses detected:
         </div>
         <ul class="offenses-list">
           
@@ -381,7 +381,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
             
             <li>
               <a href="#offense_Rakefile">
-                Rakefile - 1 offense
+                Rakefile - 2 offenses
               </a>
             </li>
           
@@ -399,14 +399,14 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
             
             <li>
               <a href="#offense_lib/tasks/code_quality.rake">
-                lib/tasks/code_quality.rake - 33 offenses
+                lib/tasks/code_quality.rake - 35 offenses
               </a>
             </li>
           
             
             <li>
               <a href="#offense_spec/code_quality_spec.rb">
-                spec/code_quality_spec.rb - 11 offenses
+                spec/code_quality_spec.rb - 13 offenses
               </a>
             </li>
           
@@ -447,7 +447,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
       
       <div class="offense-box" id="offense_Rakefile">
         <div class="box-title-placeholder"><h3>&nbsp;</h3></div>
-        <div class="box-title"><h3>Rakefile - 1 offense</h3></div>
+        <div class="box-title"><h3>Rakefile - 2 offenses</h3></div>
         <div class="offense-reports">
           
           <div class="report">
@@ -458,6 +458,17 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
             </div>
             
             <pre><code>task <span class="highlight convention">:default =&gt;</span> :spec</code></pre>
+            
+          </div>
+          
+          <div class="report">
+            <div class="meta">
+              <span class="location">Line #7</span> –
+              <span class="severity convention">convention:</span>
+              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
+            </div>
+            
+            <pre><code>Rake::Task.send :load, <span class="highlight convention">&#39;tasks/code_quality.rake&#39;</span></code></pre>
             
           </div>
           
@@ -508,7 +519,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
       
       <div class="offense-box" id="offense_lib/tasks/code_quality.rake">
         <div class="box-title-placeholder"><h3>&nbsp;</h3></div>
-        <div class="box-title"><h3>lib/tasks/code_quality.rake - 33 offenses</h3></div>
+        <div class="box-title"><h3>lib/tasks/code_quality.rake - 35 offenses</h3></div>
         <div class="offense-reports">
           
           <div class="report">
@@ -546,29 +557,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #25</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>    File.open(index_path, <span class="highlight convention">&#39;w&#39;</span>) {|f| f.write output }</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #25</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Layout/SpaceInsideBlockBraces: Space between { and | missing.</span>
-            </div>
-            
-            <pre><code>    File.open(index_path, &#39;w&#39;) <span class="highlight convention">{|</span>f| f.write output }</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #31</span> –
+              <span class="location">Line #22</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -579,7 +568,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #34</span> –
+              <span class="location">Line #25</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -590,7 +579,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #37</span> –
+              <span class="location">Line #28</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -601,7 +590,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #47</span> –
+              <span class="location">Line #38</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -612,7 +601,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #52</span> –
+              <span class="location">Line #43</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -623,7 +612,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #52</span> –
+              <span class="location">Line #43</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Layout/SpaceInsideBlockBraces: Space between { and | missing.</span>
             </div>
@@ -634,7 +623,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #59</span> –
+              <span class="location">Line #50</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -645,7 +634,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #60</span> –
+              <span class="location">Line #51</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -656,7 +645,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #87</span> –
+              <span class="location">Line #82</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -667,18 +656,40 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #90</span> –
+              <span class="location">Line #85</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
             
-            <pre><code>    task <span class="highlight convention">:default =&gt;</span> [:rubycritic, :rubocop, :metric_fu, :resources] do; end</code></pre>
+            <pre><code>    task <span class="highlight convention">:default =&gt;</span> [:run_all, :resources] do; end</code></pre>
             
           </div>
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #93</span> –
+              <span class="location">Line #88</span> –
+              <span class="severity convention">convention:</span>
+              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
+            </div>
+            
+            <pre><code>    task <span class="highlight convention">:run_all =&gt;</span> :helpers do</code></pre>
+            
+          </div>
+          
+          <div class="report">
+            <div class="meta">
+              <span class="location">Line #107</span> –
+              <span class="severity convention">convention:</span>
+              <span class="message">Performance/HashEachMethods: Use <code>each_value</code> instead of <code>each</code>. (https://github.com/bbatsov/ruby-style-guide#hash-each)</span>
+            </div>
+            
+            <pre><code>        @audit_tasks.<span class="highlight convention">each</span> do |task_name, report|</code></pre>
+            
+          </div>
+          
+          <div class="report">
+            <div class="meta">
+              <span class="location">Line #118</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -689,7 +700,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #104</span> –
+              <span class="location">Line #129</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -700,7 +711,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #129</span> –
+              <span class="location">Line #154</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -711,7 +722,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #134</span> –
+              <span class="location">Line #159</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -722,7 +733,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #134</span> –
+              <span class="location">Line #159</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -733,7 +744,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #135</span> –
+              <span class="location">Line #160</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -744,7 +755,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #135</span> –
+              <span class="location">Line #160</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -755,7 +766,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #139</span> –
+              <span class="location">Line #164</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -766,7 +777,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #140</span> –
+              <span class="location">Line #165</span> –
               <span class="severity warning">warning:</span>
               <span class="message">Lint/DeprecatedClassMethods: <code>File.exists?</code> is deprecated in favor of <code>File.exist?</code>.</span>
             </div>
@@ -777,7 +788,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #176</span> –
+              <span class="location">Line #201</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
             </div>
@@ -788,7 +799,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #201</span> –
+              <span class="location">Line #226</span> –
               <span class="severity warning">warning:</span>
               <span class="message">Lint/DeprecatedClassMethods: <code>Dir.exists?</code> is deprecated in favor of <code>Dir.exist?</code>.</span>
             </div>
@@ -799,7 +810,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #210</span> –
+              <span class="location">Line #235</span> –
               <span class="severity warning">warning:</span>
               <span class="message">Lint/DeprecatedClassMethods: <code>File.exists?</code> is deprecated in favor of <code>File.exist?</code>.</span>
             </div>
@@ -810,7 +821,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #211</span> –
+              <span class="location">Line #236</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -821,7 +832,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #273</span> –
+              <span class="location">Line #298</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -832,7 +843,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #286</span> –
+              <span class="location">Line #311</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Layout/SpaceBeforeBlockBraces: Space missing to the left of {.</span>
             </div>
@@ -843,7 +854,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #291</span> –
+              <span class="location">Line #316</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -854,7 +865,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #291</span> –
+              <span class="location">Line #316</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -865,12 +876,34 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #315</span> –
+              <span class="location">Line #340</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/Semicolon: Do not use semicolons to terminate expressions. (https://github.com/bbatsov/ruby-style-guide#no-semicolon)</span>
             </div>
             
             <pre><code>      fgcode = 30<span class="highlight convention">;</span> bgcode = 40</code></pre>
+            
+          </div>
+          
+          <div class="report">
+            <div class="meta">
+              <span class="location">Line #372</span> –
+              <span class="severity convention">convention:</span>
+              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
+            </div>
+            
+            <pre><code>      File.open(index_path, <span class="highlight convention">&#39;w&#39;</span>) {|f| f.write output }</code></pre>
+            
+          </div>
+          
+          <div class="report">
+            <div class="meta">
+              <span class="location">Line #372</span> –
+              <span class="severity convention">convention:</span>
+              <span class="message">Layout/SpaceInsideBlockBraces: Space between { and | missing.</span>
+            </div>
+            
+            <pre><code>      File.open(index_path, &#39;w&#39;) <span class="highlight convention">{|</span>f| f.write output }</code></pre>
             
           </div>
           
@@ -881,7 +914,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
       
       <div class="offense-box" id="offense_spec/code_quality_spec.rb">
         <div class="box-title-placeholder"><h3>&nbsp;</h3></div>
-        <div class="box-title"><h3>spec/code_quality_spec.rb - 11 offenses</h3></div>
+        <div class="box-title"><h3>spec/code_quality_spec.rb - 13 offenses</h3></div>
         <div class="offense-reports">
           
           <div class="report">
@@ -963,18 +996,29 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #38</span> –
+              <span class="location">Line #35</span> –
               <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
+              <span class="message">Style/Semicolon: Do not use semicolons to terminate expressions. (https://github.com/bbatsov/ruby-style-guide#no-semicolon)</span>
             </div>
             
-            <pre><code>      expect { run_rake <span class="highlight convention">&#39;code_quality&#39;</span> }.not_to raise_error</code></pre>
+            <pre><code>    before { Rake::Task.clear<span class="highlight convention">;</span> load_rake_tasks }</code></pre>
             
           </div>
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #42</span> –
+              <span class="location">Line #40</span> –
+              <span class="severity convention">convention:</span>
+              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
+            </div>
+            
+            <pre><code>        expect { run_rake <span class="highlight convention">&#39;code_quality&#39;</span> }.not_to raise_error</code></pre>
+            
+          </div>
+          
+          <div class="report">
+            <div class="meta">
+              <span class="location">Line #45</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -985,7 +1029,7 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #46</span> –
+              <span class="location">Line #49</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
@@ -996,12 +1040,23 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #50</span> –
+              <span class="location">Line #53</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
             
             <pre><code>      expect { run_rake <span class="highlight convention">&#39;code_quality:quality_audit:metric_fu&#39;</span> }.to output(/## metric_fu/).to_stdout</code></pre>
+            
+          </div>
+          
+          <div class="report">
+            <div class="meta">
+              <span class="location">Line #61</span> –
+              <span class="severity convention">convention:</span>
+              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
+            </div>
+            
+            <pre><code>    context <span class="highlight convention">&#39;quality_audit with option&#39;</span> do</code></pre>
             
           </div>
           
