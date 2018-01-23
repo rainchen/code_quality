@@ -84,10 +84,31 @@ namespace :code_quality do
   end
 
   desc "code quality audit"
+  # e.g.: rake code_quality:quality_audit fail_fast=true
+  # options:
+  #   fail_fast: to stop immediately if any audit task fails, by default fail_fast=false
   task :quality_audit => [:"quality_audit:default"] do; end
   namespace :quality_audit do
     # default tasks
-    task :default => [:rubycritic, :rubocop, :metric_fu, :resources] do; end
+    task :default => [:run_all, :resources] do; end
+
+    desc "run all audit tasks"
+    task :run_all => :helpers do
+      options = options_from_env(:fail_fast)
+      fail_fast = options.fetch(:fail_fast, "false")
+      audit_tasks = [:rubycritic, :rubocop, :metric_fu]
+      exc = nil
+      audit_tasks.each do |task_name|
+        full_task_name = :"code_quality:quality_audit:#{task_name}"
+        begin
+          task = Rake::Task[full_task_name]
+          task.invoke
+        rescue SystemExit => exc
+          raise exc if fail_fast == "true"
+        end
+      end
+      audit_faild "" if exc
+    end
 
     # desc "prepare dir"
     task :prepare => :helpers do

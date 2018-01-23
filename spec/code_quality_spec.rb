@@ -32,7 +32,7 @@ RSpec.describe CodeQuality do
   end
 
   describe "rake code_quality", type: :task do
-    before { load_rake_tasks }
+    before { Rake::Task.clear; load_rake_tasks }
 
     it "work for ruby project" do
       expect { run_rake 'code_quality' }.not_to raise_error
@@ -54,5 +54,20 @@ RSpec.describe CodeQuality do
     it "return non-zero exit status if failed" do
       expect { run_rake "code_quality:quality_audit:rubocop", env: "max_offenses=0" }.to raise_error(SystemExit)
     end
+
+    context 'quality_audit with option' do
+      it "fail_fast=false" do
+        expect {
+          run_rake "code_quality:quality_audit", env: "fail_fast=false max_offenses=0 lowest_score=101"
+        }.to raise_error(SystemExit).and output.to_stdout.and output(/(lowest_score){1}.*(max_offenses){1}/m).to_stderr
+      end
+
+      it "fail_fast=true" do
+        expect {
+          run_rake "code_quality:quality_audit", env: "fail_fast=true max_offenses=0 lowest_score=101"
+        }.to raise_error(SystemExit).and output.to_stdout.and output(/(lowest_score){1}.*(max_offenses){0}/m).to_stderr
+      end
+    end
+
   end
 end
