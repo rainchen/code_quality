@@ -70,6 +70,12 @@ RSpec.describe CodeQuality do
           run_rake "code_quality:quality_audit", env: "fail_fast=true max_offenses=0 lowest_score=101"
         }.to raise_error(SystemExit).and output.to_stdout.and output(/(lowest_score){1}.*(max_offenses){0}/m).to_stderr
       end
+
+      it "generate_index=true" do
+        expect {
+          run_rake "code_quality:quality_audit", env: "generate_index=true"
+        }.to output(/Generate report index to/).to_stdout
+      end
     end
 
   end

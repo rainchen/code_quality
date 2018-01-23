@@ -12,17 +12,8 @@ namespace :code_quality do
 
   # desc "generate a report index page"
   task :generate_index => :helpers do
-    require "erb"
-    prepare_dir "tmp/code_quality"
-    gem_app_dir = File.expand_path("../../../app", __FILE__)
-    erb_file = "#{gem_app_dir}/views/code_quality/index.html.erb"
     index_path = "tmp/code_quality/index.html"
-
-    # render view
-    erb = ERB.new(File.read(erb_file))
-    output = erb.result(binding)
-
-    File.open(index_path, 'w') {|f| f.write output }
+    generate_index index_path
     # puts "Generate report index to #{index_path}"
     show_in_browser File.realpath(index_path)
   end
@@ -87,6 +78,7 @@ namespace :code_quality do
   # e.g.: rake code_quality:quality_audit fail_fast=true
   # options:
   #   fail_fast: to stop immediately if any audit task fails, by default fail_fast=false
+  #   generate_index: generate a report index page to tmp/code_quality/quality_audit/index.html, by default generate_index=false
   task :quality_audit => [:"quality_audit:default"] do; end
   namespace :quality_audit do
     # default tasks
@@ -94,8 +86,9 @@ namespace :code_quality do
 
     desc "run all audit tasks"
     task :run_all => :helpers do
-      options = options_from_env(:fail_fast)
+      options = options_from_env(:fail_fast, :generate_index)
       fail_fast = options.fetch(:fail_fast, "false")
+      generate_index = options.fetch(:generate_index, "false")
       audit_tasks = [:rubycritic, :rubocop, :metric_fu]
       exc = nil
       audit_tasks.each do |task_name|
@@ -107,6 +100,17 @@ namespace :code_quality do
           raise exc if fail_fast == "true"
         end
       end
+
+      # generate a report index page to tmp/code_quality/quality_audit/index.html
+      if options[:generate_index] == "true"
+        index_path = "tmp/code_quality/quality_audit/index.html"
+        @audit_tasks.each do |task_name, report|
+          report[:report_path].sub!("quality_audit/", "")
+        end
+        generate_index index_path
+        puts "Generate report index to #{index_path}"
+      end
+
       audit_faild "" if exc
     end
 
@@ -352,6 +356,20 @@ namespace :code_quality do
 
     def open_in_browser?
       ENV["CI"].nil?
+    end
+
+    def generate_index(index_path)
+      require "erb"
+      prepare_dir "tmp/code_quality"
+      gem_app_dir = File.expand_path("../../../app", __FILE__)
+      erb_file = "#{gem_app_dir}/views/code_quality/index.html.erb"
+
+      # render view
+      @audit_tasks ||= []
+      erb = ERB.new(File.read(erb_file))
+      output = erb.result(binding)
+
+      File.open(index_path, 'w') {|f| f.write output }
     end
   end
 
