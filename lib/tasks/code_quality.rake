@@ -1,6 +1,6 @@
 desc "Generate security audit and code quality report"
 # e.g.: rake code_quality lowest_score=90 max_offenses=100 metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=10 roodi_max_offenses=10
-task :code_quality => :"code_quality:default" do; end
+task :code_quality => :"code_quality:default" do; end if Rake.application.instance_of?(Rake::Application)
 namespace :code_quality do
   task :default => [:summary, :security_audit, :quality_audit, :generate_index] do; end
 
@@ -80,7 +80,7 @@ namespace :code_quality do
   #   fail_fast: to stop immediately if any audit task fails, by default fail_fast=false
   #   generate_index: generate a report index page to tmp/code_quality/quality_audit/index.html, by default generate_index=false
   task :quality_audit => [:"quality_audit:default"] do; end
-  namespace :quality_audit do
+  namespace :quality_audit do |ns|
     # default tasks
     task :default => [:run_all, :resources] do; end
 
@@ -92,9 +92,8 @@ namespace :code_quality do
       audit_tasks = [:rubycritic, :rubocop, :metric_fu]
       exc = nil
       audit_tasks.each do |task_name|
-        full_task_name = :"code_quality:quality_audit:#{task_name}"
         begin
-          task = Rake::Task[full_task_name]
+          task = ns[task_name]
           task.invoke
         rescue SystemExit => exc
           raise exc if fail_fast == "true"
@@ -222,7 +221,7 @@ namespace :code_quality do
           puts "for metrics: #{selected_metrics.join(",")}"
         end
         # geneate report
-        report = `bundle exec metric_fu --no-open #{metric_fu_opts}`
+        report = `metric_fu --no-open #{metric_fu_opts}`
         FileUtils.remove_dir(report_path) if Dir.exists? report_path
         FileUtils.mv("tmp/metric_fu/output", report_path, force: true)
         puts report
@@ -288,7 +287,7 @@ namespace :code_quality do
         @audit_tasks[task_name][:failure] = exc.message.gsub(/(\e\[\d+m)/, "")
       ensure
         # get @report_path set in each audit task
-        @audit_tasks[task_name][:report_path] = @report_path.sub("tmp/code_quality/", "")
+        @audit_tasks[task_name][:report_path] = @report_path&.sub("tmp/code_quality/", "")
       end
       puts "```", ""
       raise exc if exc
@@ -347,6 +346,7 @@ namespace :code_quality do
 
     def show_in_browser(dir)
       require "launchy"
+      require "uri"
       uri = URI.escape("file://#{dir}/")
       if File.directory?(dir)
         uri = URI.join(uri, "index.html")
