@@ -1,6 +1,6 @@
 # CodeQuality
 
-Run code quality and security audit report with one command `code_quality`.
+Run code quality and security audit report with one rake task as `rake code_quality`.
 
 [![Gem Version](https://badge.fury.io/rb/code_quality.svg)](https://badge.fury.io/rb/code_quality)
 [![Build Status](https://travis-ci.org/rainchen/code_quality.svg)](https://travis-ci.org/rainchen/code_quality)
@@ -13,11 +13,7 @@ Run code quality and security audit report with one command `code_quality`.
 
 ## Installation
 
-```ruby
-gem install code_quality
-```
-
-Or add this line to your application's Gemfile:
+Add this line to your application's Gemfile:
 
 ```ruby
 group :development do
@@ -34,11 +30,8 @@ And then execute:
 To generate security audit and code quality report:
 
 ```
-code_quality
+rake code_quality
 ```
-
-or run as a rake task: `rake code_quality`, [Read More](README_for_rake.md)
-
 
 will output report like:
 
@@ -63,14 +56,12 @@ There are 2 types of audit tasks: `security_audit` and `quality_audit`, each sub
 
 In summary: 
 
-- run `code_quality security_audit` to get security audit report
-- run `code_quality quality_audit` to get code quality report
-
-[Tips] Run `code_quality -T` to display all tasks.
+- run `rake code_quality:security_audit` to get security audit report
+- run `rake code_quality:quality_audit` to get code quality report
 
 ### Report result using Markdown format
 
-You can output report using `code_quality > code_quality_report.md` then open it with a Markdown editor.
+You can output report using `rake code_quality > code_quality_report.md` then open it with a Markdown editor.
 
 
 
@@ -83,7 +74,7 @@ Use [bundler-audit](https://rubygems.org/gems/bundler-audit) for patch-level ver
 
 ```
 # run security audit tasks
-code_quality security_audit
+rake code_quality:security_audit
 ```
 
 output example:
@@ -100,8 +91,7 @@ Recommend setting up this task as part of a CI pipeline. For example, adding a j
 code_security_audit:
   stage: test
   script:
-    - gem install code_quality
-    - code_quality security_audit
+    - bundle exec rake code_quality:security_audit
 ```
 Gitlab-CI pipeline example:
 
@@ -118,17 +108,17 @@ Then Gitlab sends notification with the failure info, for example:
 
 ```
 # bundler audit - checks for vulnerable versions of gems in Gemfile.lock
-code_quality security_audit:bundler_audit
+rake code_quality:security_audit:bundler_audit
 ```
 
 ```
 # brakeman audit - checks Ruby on Rails applications for security vulnerabilities
-code_quality security_audit:brakeman
+rake code_quality:security_audit:brakeman
 ```
 
 ```
 # show helpful URLs
-code_quality security_audit:resources
+rake code_quality:security_audit:resources
 ```
 
 
@@ -145,16 +135,16 @@ Base on these ruby code analysis gems, you can choose suitable ones for your pro
 
 In summary: 
 
-- run `code_quality rubycritic` to get an evaluated score and code smells
-- run `code_quality rubocop` to audit coding style and get refactor suggestions
-- run `code_quality metric_fu` to get many kinds of code metrics, including rails best practice suggestions, recommend to use for rails project
+- run `rake code_quality:rubycritic` to get an evaluated score and code smells
+- run `rake code_quality:rubocop` to audit coding style and get refactor suggestions
+- run `rake code_quality:metric_fu` to get many kinds of code metrics, including rails best practice suggestions, recommend to use for rails project
 
 
 #### usage:
 
 ```
 # run all code quality audit tasks
-code_quality quality_audit
+rake code_quality:quality_audit
 ```
 
 output example:
@@ -170,7 +160,7 @@ Audit task will return non-zero exit status and showing failure reason when pass
 
 ```
 # audit with lowest_score option
-code_quality quality_audit:rubycritic lowest_score=94.5
+rake code_quality:quality_audit:rubycritic lowest_score=94.5
 ```
 
 output example:
@@ -182,7 +172,7 @@ output example:
 ##### options for rubocop
 
 ```
-# e.g.: code_quality quality_audit:rubocop max_offenses=100
+# e.g.: rake code_quality:quality_audit:rubocop max_offenses=100
 # options:
 #   config_formula: use which formula for config, supports "github, "rails" or path_to_your_local_config.yml, default is "github"
 #   cli_options: pass extract options, e.g.: cli_options="--show-cops"
@@ -196,7 +186,7 @@ output example:
 ##### options for metric_fu
 
 ```
-# e.g.: code_quality quality_audit:metric_fu metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=9 roodi_max_offenses=10
+# e.g.: rake code_quality:quality_audit:metric_fu metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=9 roodi_max_offenses=10
 # options:
 #   metrics: default to run all metrics, can be config as: cane,churn,flay,flog,hotspots,rails_best_practices,rcov,reek,roodi,saikuro,stats
 #   flay_max_offenses: offenses number for audit
@@ -215,7 +205,7 @@ output example:
 
 ```
 # run all at once
-code_quality quality_audit lowest_score=90 max_offenses=100 metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=10 roodi_max_offenses=10
+rake code_quality:quality_audit lowest_score=90 max_offenses=100 metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=10 roodi_max_offenses=10
 ```
 
 #### work with CI
@@ -227,8 +217,7 @@ Configure audit value options that matching to your own ruby/rails project, for 
 code_quality_audit:
   stage: test
   script:
-    - gem install code_quality
-    - code_quality quality_audit lowest_score=93 rails_best_practices_max_offenses=10
+    - bundle exec rake code_quality:quality_audit lowest_score=93 rails_best_practices_max_offenses=10
 
 ```
 

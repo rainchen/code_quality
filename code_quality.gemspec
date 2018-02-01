@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["RainChen"]
   spec.email         = ["hirainchen@gmail.com"]
 
-  spec.summary       = %q{run code quality and security audit report with one rake task}
-  spec.description   = %q{run code quality and security audit report with one rake task}
+  spec.summary       = %q{run code quality and security audit report with one command}
+  spec.description   = %q{run code quality and security audit report with one command or one rake task}
   spec.homepage      = "https://github.com/rainchen/code_quality"
   spec.license       = "MIT"
 
