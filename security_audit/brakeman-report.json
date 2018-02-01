@@ -3,9 +3,9 @@
     "app_path": "/home/travis/build/rainchen/code_quality",
     "rails_version": "4.x",
     "security_warnings": 0,
-    "start_time": "2018-01-23 10:22:39 +0000",
-    "end_time": "2018-01-23 10:22:39 +0000",
-    "duration": 0.04158746,
+    "start_time": "2018-02-01 11:50:25 +0000",
+    "end_time": "2018-02-01 11:50:25 +0000",
+    "duration": 0.104580527,
     "checks_performed": [
       "BasicAuth",
       "BasicAuthTimingAttack",

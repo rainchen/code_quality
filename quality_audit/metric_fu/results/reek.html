@@ -518,7 +518,7 @@ table td.score {
 <p><a href="http://github.com/troessner/reek">Reek</a> detects common <a href="https://github.com/troessner/reek/blob/master/docs/Code-Smells.md">code smells</a> in ruby code.</p>
 
 <div id="graph_container"></div>
-<script language="javascript" src="reek.js?1516702986" type="text/javascript"></script>
+<script language="javascript" src="reek.js?1517485862" type="text/javascript"></script>
 
 
 
@@ -549,6 +549,148 @@ table td.score {
   
     
       <tr class='dark'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#in_namespace
+        </td>
+        <td>
+          is controlled by argument 'name'
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md">ControlParameter</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#handle_options
+        </td>
+        <td>
+          calls 'opts.separator ""' 3 times
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md">DuplicateMethodCall</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#handle_options
+        </td>
+        <td>
+          refers to 'opts' more than self (maybe move it to another class?)
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md">FeatureEnvy</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI
+        </td>
+        <td>
+          has no descriptive comment
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md">IrresponsibleModule</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#handle_options
+        </td>
+        <td>
+          contains iterators nested 2 deep
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md">NestedIterators</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#find_rakefile_location
+        </td>
+        <td>
+          performs a nil-check
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md">NilCheck</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#handle_options
+        </td>
+        <td>
+          has approx 19 statements
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md">TooManyStatements</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#run
+        </td>
+        <td>
+          has approx 7 statements
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md">TooManyStatements</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='dark'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI#self.start
+        </td>
+        <td>
+          has unused parameter 'argv'
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Unused-Parameters.md">UnusedParameters</a>
+        </td>
+      </tr>
+      
+    
+      <tr class='light'>
+        <td><a href='../codes/lib/code_quality/cli.rb.html'>lib/code_quality/cli.rb</a></td>
+        <td>
+          CodeQuality::CLI::Application#lib_dir
+        </td>
+        <td>
+          doesn't depend on instance state (maybe move it to another class?)
+        </td>
+        <td>
+          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md">UtilityFunction</a>
+        </td>
+      </tr>
+      
+    
+  
+    
+      <tr class='dark'>
         <td><a href='../codes/lib/code_quality/railtie.rb.html'>lib/code_quality/railtie.rb</a></td>
         <td>
           CodeQuality::Railtie
@@ -566,7 +708,7 @@ table td.score {
 
 </table>
 
-<p>Generated on 2018-01-23 10:23:06 +0000</p>
+<p>Generated on 2018-02-01 11:51:02 +0000</p>
 
     </div>
 

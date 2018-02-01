@@ -67,7 +67,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>task <span class="symbol">:code_quality</span> =&gt; <span class="symbol"><span class="symbol">:</span><span class="delimiter">&quot;</span><span class="content">code_quality:default</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>; <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n3" name="n3">3</a></span>task <span class="symbol">:code_quality</span> =&gt; <span class="symbol"><span class="symbol">:</span><span class="delimiter">&quot;</span><span class="content">code_quality:default</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>; <span class="keyword">end</span> <span class="keyword">if</span> <span class="constant">Rake</span>.application.instance_of?(<span class="constant">Rake</span>::<span class="constant">Application</span>)
 </pre></div>
 </div>
 
@@ -1347,7 +1347,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>  namespace <span class="symbol">:quality_audit</span> <span class="keyword">do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n83" name="n83">83</a></span>  namespace <span class="symbol">:quality_audit</span> <span class="keyword">do</span> |ns|
 </pre></div>
 </div>
 
@@ -1539,7 +1539,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n95" name="n95">95</a></span>        full_task_name = <span class="symbol"><span class="symbol">:</span><span class="delimiter">&quot;</span><span class="content">code_quality:quality_audit:</span><span class="inline"><span class="inline-delimiter">#{</span>task_name<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n95" name="n95">95</a></span>        <span class="keyword">begin</span>
 </pre></div>
 </div>
 
@@ -1555,7 +1555,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n96" name="n96">96</a></span>        <span class="keyword">begin</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n96" name="n96">96</a></span>          task = ns[task_name]
 </pre></div>
 </div>
 
@@ -1571,7 +1571,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n97" name="n97">97</a></span>          task = <span class="constant">Rake</span>::<span class="constant">Task</span>[full_task_name]
+  <div class="code"><pre><span class="line-numbers"><a href="#n97" name="n97">97</a></span>          task.invoke
 </pre></div>
 </div>
 
@@ -1587,7 +1587,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n98" name="n98">98</a></span>          task.invoke
+  <div class="code"><pre><span class="line-numbers"><a href="#n98" name="n98">98</a></span>        <span class="keyword">rescue</span> <span class="constant">SystemExit</span> =&gt; exc
 </pre></div>
 </div>
 
@@ -1603,7 +1603,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n99" name="n99">99</a></span>        <span class="keyword">rescue</span> <span class="constant">SystemExit</span> =&gt; exc
+  <div class="code"><pre><span class="line-numbers"> <a href="#n99" name="n99">99</a></span>          raise exc <span class="keyword">if</span> fail_fast == <span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -1619,7 +1619,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n100" name="n100">100</a></strong></span>          raise exc <span class="keyword">if</span> fail_fast == <span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n100" name="n100">100</a></strong></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1635,7 +1635,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n101" name="n101">101</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n101" name="n101">101</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1651,7 +1651,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n102" name="n102">102</a></span>      <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n102" name="n102">102</a></span>
 </pre></div>
 </div>
 
@@ -1667,7 +1667,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n103" name="n103">103</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n103" name="n103">103</a></span>      <span class="comment"># generate a report index page to tmp/code_quality/quality_audit/index.html</span>
 </pre></div>
 </div>
 
@@ -1683,7 +1683,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n104" name="n104">104</a></span>      <span class="comment"># generate a report index page to tmp/code_quality/quality_audit/index.html</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n104" name="n104">104</a></span>      <span class="keyword">if</span> options[<span class="symbol">:generate_index</span>] == <span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -1699,7 +1699,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n105" name="n105">105</a></span>      <span class="keyword">if</span> options[<span class="symbol">:generate_index</span>] == <span class="string"><span class="delimiter">&quot;</span><span class="content">true</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n105" name="n105">105</a></span>        index_path = <span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/code_quality/quality_audit/index.html</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -1715,7 +1715,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n106" name="n106">106</a></span>        index_path = <span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/code_quality/quality_audit/index.html</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n106" name="n106">106</a></span>        <span class="instance-variable">@audit_tasks</span>.each <span class="keyword">do</span> |task_name, report|
 </pre></div>
 </div>
 
@@ -1731,7 +1731,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n107" name="n107">107</a></span>        <span class="instance-variable">@audit_tasks</span>.each <span class="keyword">do</span> |task_name, report|
+  <div class="code"><pre><span class="line-numbers"><a href="#n107" name="n107">107</a></span>          report[<span class="symbol">:report_path</span>].sub!(<span class="string"><span class="delimiter">&quot;</span><span class="content">quality_audit/</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -1747,7 +1747,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n108" name="n108">108</a></span>          report[<span class="symbol">:report_path</span>].sub!(<span class="string"><span class="delimiter">&quot;</span><span class="content">quality_audit/</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n108" name="n108">108</a></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1763,7 +1763,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n109" name="n109">109</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n109" name="n109">109</a></span>        generate_index index_path
 </pre></div>
 </div>
 
@@ -1779,7 +1779,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n110" name="n110">110</a></strong></span>        generate_index index_path
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n110" name="n110">110</a></strong></span>        puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Generate report index to </span><span class="inline"><span class="inline-delimiter">#{</span>index_path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -1795,7 +1795,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n111" name="n111">111</a></span>        puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Generate report index to </span><span class="inline"><span class="inline-delimiter">#{</span>index_path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n111" name="n111">111</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1811,7 +1811,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n112" name="n112">112</a></span>      <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n112" name="n112">112</a></span>
 </pre></div>
 </div>
 
@@ -1827,7 +1827,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n113" name="n113">113</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n113" name="n113">113</a></span>      audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> exc
 </pre></div>
 </div>
 
@@ -1843,7 +1843,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n114" name="n114">114</a></span>      audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> exc
+  <div class="code"><pre><span class="line-numbers"><a href="#n114" name="n114">114</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -1859,7 +1859,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n115" name="n115">115</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n115" name="n115">115</a></span>
 </pre></div>
 </div>
 
@@ -1875,7 +1875,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n116" name="n116">116</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n116" name="n116">116</a></span>    <span class="comment"># desc &quot;prepare dir&quot;</span>
 </pre></div>
 </div>
 
@@ -1891,7 +1891,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n117" name="n117">117</a></span>    <span class="comment"># desc &quot;prepare dir&quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n117" name="n117">117</a></span>    task <span class="symbol">:prepare</span> =&gt; <span class="symbol">:helpers</span> <span class="keyword">do</span>
 </pre></div>
 </div>
 
@@ -1907,7 +1907,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n118" name="n118">118</a></span>    task <span class="symbol">:prepare</span> =&gt; <span class="symbol">:helpers</span> <span class="keyword">do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n118" name="n118">118</a></span>      <span class="instance-variable">@report_dir</span> = <span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/code_quality/quality_audit</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -1923,7 +1923,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n119" name="n119">119</a></span>      <span class="instance-variable">@report_dir</span> = <span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/code_quality/quality_audit</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n119" name="n119">119</a></span>      prepare_dir <span class="instance-variable">@report_dir</span>
 </pre></div>
 </div>
 
@@ -1939,7 +1939,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n120" name="n120">120</a></strong></span>      prepare_dir <span class="instance-variable">@report_dir</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n120" name="n120">120</a></strong></span>
 </pre></div>
 </div>
 
@@ -1955,7 +1955,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n121" name="n121">121</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n121" name="n121">121</a></span>      <span class="keyword">def</span> <span class="function">report_dir</span>
 </pre></div>
 </div>
 
@@ -1971,7 +1971,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n122" name="n122">122</a></span>      <span class="keyword">def</span> <span class="function">report_dir</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n122" name="n122">122</a></span>        <span class="instance-variable">@report_dir</span>
 </pre></div>
 </div>
 
@@ -1987,7 +1987,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n123" name="n123">123</a></span>        <span class="instance-variable">@report_dir</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n123" name="n123">123</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -2003,7 +2003,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n124" name="n124">124</a></span>      <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n124" name="n124">124</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -2019,7 +2019,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n125" name="n125">125</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n125" name="n125">125</a></span>
 </pre></div>
 </div>
 
@@ -2035,7 +2035,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n126" name="n126">126</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n126" name="n126">126</a></span>    desc <span class="string"><span class="delimiter">&quot;</span><span class="content">rubycritic</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2051,7 +2051,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n127" name="n127">127</a></span>    desc <span class="string"><span class="delimiter">&quot;</span><span class="content">rubycritic</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n127" name="n127">127</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:rubycritic lowest_score=94.5</span>
 </pre></div>
 </div>
 
@@ -2067,7 +2067,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n128" name="n128">128</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:rubycritic lowest_score=94.5</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n128" name="n128">128</a></span>    task <span class="symbol">:rubycritic</span> =&gt; <span class="symbol">:prepare</span> <span class="keyword">do</span> |task|
 </pre></div>
 </div>
 
@@ -2083,7 +2083,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n129" name="n129">129</a></span>    task <span class="symbol">:rubycritic</span> =&gt; <span class="symbol">:prepare</span> <span class="keyword">do</span> |task|
+  <div class="code"><pre><span class="line-numbers"><a href="#n129" name="n129">129</a></span>      options = options_from_env(<span class="symbol">:lowest_score</span>)
 </pre></div>
 </div>
 
@@ -2099,7 +2099,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n130" name="n130">130</a></strong></span>      options = options_from_env(<span class="symbol">:lowest_score</span>)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n130" name="n130">130</a></strong></span>      run_audit task, <span class="string"><span class="delimiter">&quot;</span><span class="content">Rubycritic - static analysis gems such as Reek, Flay and Flog to provide a quality report of your Ruby code.</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
 </pre></div>
 </div>
 
@@ -2115,7 +2115,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n131" name="n131">131</a></span>      run_audit task, <span class="string"><span class="delimiter">&quot;</span><span class="content">Rubycritic - static analysis gems such as Reek, Flay and Flog to provide a quality report of your Ruby code.</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n131" name="n131">131</a></span>        report = <span class="shell"><span class="delimiter">`</span><span class="content">rubycritic -p </span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/rubycritic app lib --no-browser</span><span class="delimiter">`</span></span>
 </pre></div>
 </div>
 
@@ -2131,7 +2131,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n132" name="n132">132</a></span>        report = <span class="shell"><span class="delimiter">`</span><span class="content">rubycritic -p </span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/rubycritic app lib --no-browser</span><span class="delimiter">`</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n132" name="n132">132</a></span>        puts report
 </pre></div>
 </div>
 
@@ -2147,7 +2147,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n133" name="n133">133</a></span>        puts report
+  <div class="code"><pre><span class="line-numbers"><a href="#n133" name="n133">133</a></span>        <span class="instance-variable">@report_path</span> = report_path = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/rubycritic/overview.html</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2163,7 +2163,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n134" name="n134">134</a></span>        <span class="instance-variable">@report_path</span> = report_path = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/rubycritic/overview.html</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n134" name="n134">134</a></span>        show_in_browser <span class="constant">File</span>.realpath(report_path)
 </pre></div>
 </div>
 
@@ -2179,7 +2179,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n135" name="n135">135</a></span>        show_in_browser <span class="constant">File</span>.realpath(report_path)
+  <div class="code"><pre><span class="line-numbers"><a href="#n135" name="n135">135</a></span>
 </pre></div>
 </div>
 
@@ -2195,7 +2195,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n136" name="n136">136</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n136" name="n136">136</a></span>        <span class="comment"># if config lowest_score then audit it with report score</span>
 </pre></div>
 </div>
 
@@ -2211,7 +2211,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n137" name="n137">137</a></span>        <span class="comment"># if config lowest_score then audit it with report score</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n137" name="n137">137</a></span>        <span class="keyword">if</span> options[<span class="symbol">:lowest_score</span>]
 </pre></div>
 </div>
 
@@ -2227,7 +2227,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n138" name="n138">138</a></span>        <span class="keyword">if</span> options[<span class="symbol">:lowest_score</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n138" name="n138">138</a></span>          <span class="keyword">if</span> report[<span class="integer">-20</span>..<span class="integer">-1</span>] =~ <span class="regexp"><span class="delimiter">/</span><span class="content">Score: (.+)</span><span class="delimiter">/</span></span>
 </pre></div>
 </div>
 
@@ -2243,7 +2243,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n139" name="n139">139</a></span>          <span class="keyword">if</span> report[<span class="integer">-20</span>..<span class="integer">-1</span>] =~ <span class="regexp"><span class="delimiter">/</span><span class="content">Score: (.+)</span><span class="delimiter">/</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n139" name="n139">139</a></span>            report_score = <span class="global-variable">$1</span>.to_f
 </pre></div>
 </div>
 
@@ -2259,7 +2259,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n140" name="n140">140</a></strong></span>            report_score = <span class="global-variable">$1</span>.to_f
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n140" name="n140">140</a></strong></span>            lowest_score = options[<span class="symbol">:lowest_score</span>].to_f
 </pre></div>
 </div>
 
@@ -2275,7 +2275,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n141" name="n141">141</a></span>            lowest_score = options[<span class="symbol">:lowest_score</span>].to_f
+  <div class="code"><pre><span class="line-numbers"><a href="#n141" name="n141">141</a></span>            audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="content">Report score </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(report_score, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is lower then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(lowest_score, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a higher </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">lowest_score</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> report_score &lt; lowest_score
 </pre></div>
 </div>
 
@@ -2291,7 +2291,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n142" name="n142">142</a></span>            audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="content">Report score </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(report_score, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is lower then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(lowest_score, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a higher </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">lowest_score</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> report_score &lt; lowest_score
+  <div class="code"><pre><span class="line-numbers"><a href="#n142" name="n142">142</a></span>          <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -2307,7 +2307,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n143" name="n143">143</a></span>          <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n143" name="n143">143</a></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -2323,7 +2323,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n144" name="n144">144</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n144" name="n144">144</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -2339,7 +2339,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n145" name="n145">145</a></span>      <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n145" name="n145">145</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -2355,7 +2355,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n146" name="n146">146</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n146" name="n146">146</a></span>
 </pre></div>
 </div>
 
@@ -2371,7 +2371,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n147" name="n147">147</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n147" name="n147">147</a></span>    desc <span class="string"><span class="delimiter">&quot;</span><span class="content">rubocop - audit coding style</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2387,7 +2387,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n148" name="n148">148</a></span>    desc <span class="string"><span class="delimiter">&quot;</span><span class="content">rubocop - audit coding style</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n148" name="n148">148</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:rubocop max_offenses=100</span>
 </pre></div>
 </div>
 
@@ -2403,7 +2403,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n149" name="n149">149</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:rubocop max_offenses=100</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n149" name="n149">149</a></span>    <span class="comment"># options:</span>
 </pre></div>
 </div>
 
@@ -2419,7 +2419,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n150" name="n150">150</a></strong></span>    <span class="comment"># options:</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n150" name="n150">150</a></strong></span>    <span class="comment">#   config_formula: use which formula for config, supports &quot;github, &quot;rails&quot; or path_to_your_local_config.yml, default is &quot;github&quot;</span>
 </pre></div>
 </div>
 
@@ -2435,7 +2435,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n151" name="n151">151</a></span>    <span class="comment">#   config_formula: use which formula for config, supports &quot;github, &quot;rails&quot; or path_to_your_local_config.yml, default is &quot;github&quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n151" name="n151">151</a></span>    <span class="comment">#   cli_options: pass extract options, e.g.: cli_options=&quot;--show-cops&quot;</span>
 </pre></div>
 </div>
 
@@ -2451,7 +2451,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n152" name="n152">152</a></span>    <span class="comment">#   cli_options: pass extract options, e.g.: cli_options=&quot;--show-cops&quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n152" name="n152">152</a></span>    <span class="comment">#   max_offenses: if config max_offenses then audit it with detected offenses number in report, e.g.: max_offenses=100</span>
 </pre></div>
 </div>
 
@@ -2467,7 +2467,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n153" name="n153">153</a></span>    <span class="comment">#   max_offenses: if config max_offenses then audit it with detected offenses number in report, e.g.: max_offenses=100</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n153" name="n153">153</a></span>    task <span class="symbol">:rubocop</span> =&gt; <span class="symbol">:prepare</span> <span class="keyword">do</span> |task|
 </pre></div>
 </div>
 
@@ -2483,7 +2483,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n154" name="n154">154</a></span>    task <span class="symbol">:rubocop</span> =&gt; <span class="symbol">:prepare</span> <span class="keyword">do</span> |task|
+  <div class="code"><pre><span class="line-numbers"><a href="#n154" name="n154">154</a></span>      run_audit task, <span class="string"><span class="delimiter">&quot;</span><span class="content">rubocop - RuboCop is a Ruby static code analyzer. Out of the box it will enforce many of the guidelines outlined in the community Ruby Style Guide.</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
 </pre></div>
 </div>
 
@@ -2499,7 +2499,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n155" name="n155">155</a></span>      run_audit task, <span class="string"><span class="delimiter">&quot;</span><span class="content">rubocop - RuboCop is a Ruby static code analyzer. Out of the box it will enforce many of the guidelines outlined in the community Ruby Style Guide.</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n155" name="n155">155</a></span>        options = options_from_env(<span class="symbol">:config_formula</span>, <span class="symbol">:cli_options</span>, <span class="symbol">:max_offenses</span>)
 </pre></div>
 </div>
 
@@ -2515,7 +2515,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n156" name="n156">156</a></span>        options = options_from_env(<span class="symbol">:config_formula</span>, <span class="symbol">:cli_options</span>, <span class="symbol">:max_offenses</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n156" name="n156">156</a></span>
 </pre></div>
 </div>
 
@@ -2531,7 +2531,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n157" name="n157">157</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n157" name="n157">157</a></span>        config_formulas = {
 </pre></div>
 </div>
 
@@ -2547,7 +2547,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n158" name="n158">158</a></span>        config_formulas = {
+  <div class="code"><pre><span class="line-numbers"><a href="#n158" name="n158">158</a></span>          <span class="string"><span class="delimiter">'</span><span class="content">github</span><span class="delimiter">'</span></span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">https://github.com/github/rubocop-github</span><span class="delimiter">'</span></span>,
 </pre></div>
 </div>
 
@@ -2563,7 +2563,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n159" name="n159">159</a></span>          <span class="string"><span class="delimiter">'</span><span class="content">github</span><span class="delimiter">'</span></span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">https://github.com/github/rubocop-github</span><span class="delimiter">'</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n159" name="n159">159</a></span>          <span class="string"><span class="delimiter">'</span><span class="content">rails</span><span class="delimiter">'</span></span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">https://github.com/rails/rails/blob/master/.rubocop.yml</span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -2579,7 +2579,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n160" name="n160">160</a></strong></span>          <span class="string"><span class="delimiter">'</span><span class="content">rails</span><span class="delimiter">'</span></span> =&gt; <span class="string"><span class="delimiter">'</span><span class="content">https://github.com/rails/rails/blob/master/.rubocop.yml</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n160" name="n160">160</a></strong></span>        }
 </pre></div>
 </div>
 
@@ -2595,7 +2595,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n161" name="n161">161</a></span>        }
+  <div class="code"><pre><span class="line-numbers"><a href="#n161" name="n161">161</a></span>
 </pre></div>
 </div>
 
@@ -2611,7 +2611,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n162" name="n162">162</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n162" name="n162">162</a></span>        <span class="comment"># prepare cli options</span>
 </pre></div>
 </div>
 
@@ -2627,7 +2627,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n163" name="n163">163</a></span>        <span class="comment"># prepare cli options</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n163" name="n163">163</a></span>        config_formula = options.fetch(<span class="symbol">:config_formula</span>, <span class="string"><span class="delimiter">'</span><span class="content">github</span><span class="delimiter">'</span></span>)
 </pre></div>
 </div>
 
@@ -2643,7 +2643,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n164" name="n164">164</a></span>        config_formula = options.fetch(<span class="symbol">:config_formula</span>, <span class="string"><span class="delimiter">'</span><span class="content">github</span><span class="delimiter">'</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n164" name="n164">164</a></span>        <span class="keyword">if</span> config_formula &amp;&amp; <span class="constant">File</span>.exists?(config_formula)
 </pre></div>
 </div>
 
@@ -2659,7 +2659,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n165" name="n165">165</a></span>        <span class="keyword">if</span> config_formula &amp;&amp; <span class="constant">File</span>.exists?(config_formula)
+  <div class="code"><pre><span class="line-numbers"><a href="#n165" name="n165">165</a></span>          config_file = config_formula
 </pre></div>
 </div>
 
@@ -2675,7 +2675,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n166" name="n166">166</a></span>          config_file = config_formula
+  <div class="code"><pre><span class="line-numbers"><a href="#n166" name="n166">166</a></span>          puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Using config file: </span><span class="inline"><span class="inline-delimiter">#{</span>config_file<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2691,7 +2691,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n167" name="n167">167</a></span>          puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Using config file: </span><span class="inline"><span class="inline-delimiter">#{</span>config_file<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n167" name="n167">167</a></span>        <span class="keyword">else</span>
 </pre></div>
 </div>
 
@@ -2707,7 +2707,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n168" name="n168">168</a></span>        <span class="keyword">else</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n168" name="n168">168</a></span>          gem_config_dir = <span class="constant">File</span>.expand_path(<span class="string"><span class="delimiter">&quot;</span><span class="content">../../../config</span><span class="delimiter">&quot;</span></span>, <span class="predefined-constant">__FILE__</span>)
 </pre></div>
 </div>
 
@@ -2723,7 +2723,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n169" name="n169">169</a></span>          gem_config_dir = <span class="constant">File</span>.expand_path(<span class="string"><span class="delimiter">&quot;</span><span class="content">../../../config</span><span class="delimiter">&quot;</span></span>, <span class="predefined-constant">__FILE__</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n169" name="n169">169</a></span>          config_file    = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>gem_config_dir<span class="inline-delimiter">}</span></span><span class="content">/rubocop-</span><span class="inline"><span class="inline-delimiter">#{</span>config_formula<span class="inline-delimiter">}</span></span><span class="content">.yml</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2739,7 +2739,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n170" name="n170">170</a></strong></span>          config_file    = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>gem_config_dir<span class="inline-delimiter">}</span></span><span class="content">/rubocop-</span><span class="inline"><span class="inline-delimiter">#{</span>config_formula<span class="inline-delimiter">}</span></span><span class="content">.yml</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n170" name="n170">170</a></strong></span>          puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Using config formula: [</span><span class="inline"><span class="inline-delimiter">#{</span>config_formula<span class="inline-delimiter">}</span></span><span class="content">](</span><span class="inline"><span class="inline-delimiter">#{</span>config_formulas[config_formula]<span class="inline-delimiter">}</span></span><span class="content">)</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2755,7 +2755,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n171" name="n171">171</a></span>          puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Using config formula: [</span><span class="inline"><span class="inline-delimiter">#{</span>config_formula<span class="inline-delimiter">}</span></span><span class="content">](</span><span class="inline"><span class="inline-delimiter">#{</span>config_formulas[config_formula]<span class="inline-delimiter">}</span></span><span class="content">)</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n171" name="n171">171</a></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -2771,7 +2771,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n172" name="n172">172</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n172" name="n172">172</a></span>        <span class="instance-variable">@report_path</span> = report_path = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/rubocop-report.html</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2787,7 +2787,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n173" name="n173">173</a></span>        <span class="instance-variable">@report_path</span> = report_path = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/rubocop-report.html</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n173" name="n173">173</a></span>
 </pre></div>
 </div>
 
@@ -2803,7 +2803,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n174" name="n174">174</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n174" name="n174">174</a></span>        <span class="comment"># generate report</span>
 </pre></div>
 </div>
 
@@ -2819,7 +2819,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n175" name="n175">175</a></span>        <span class="comment"># generate report</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n175" name="n175">175</a></span>        report = <span class="shell"><span class="delimiter">`</span><span class="content">rubocop -c </span><span class="inline"><span class="inline-delimiter">#{</span>config_file<span class="inline-delimiter">}</span></span><span class="content"> -S -R -P </span><span class="inline"><span class="inline-delimiter">#{</span>options[<span class="symbol">:cli_options</span>]<span class="inline-delimiter">}</span></span><span class="content"> --format offenses --format html -o </span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="delimiter">`</span></span>
 </pre></div>
 </div>
 
@@ -2835,7 +2835,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n176" name="n176">176</a></span>        report = <span class="shell"><span class="delimiter">`</span><span class="content">rubocop -c </span><span class="inline"><span class="inline-delimiter">#{</span>config_file<span class="inline-delimiter">}</span></span><span class="content"> -S -R -P </span><span class="inline"><span class="inline-delimiter">#{</span>options[<span class="symbol">:cli_options</span>]<span class="inline-delimiter">}</span></span><span class="content"> --format offenses --format html -o </span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="delimiter">`</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n176" name="n176">176</a></span>        puts report
 </pre></div>
 </div>
 
@@ -2851,7 +2851,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n177" name="n177">177</a></span>        puts report
+  <div class="code"><pre><span class="line-numbers"><a href="#n177" name="n177">177</a></span>        puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Report generated to </span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -2867,7 +2867,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n178" name="n178">178</a></span>        puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Report generated to </span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n178" name="n178">178</a></span>        show_in_browser <span class="constant">File</span>.realpath(report_path)
 </pre></div>
 </div>
 
@@ -2883,7 +2883,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n179" name="n179">179</a></span>        show_in_browser <span class="constant">File</span>.realpath(report_path)
+  <div class="code"><pre><span class="line-numbers"><a href="#n179" name="n179">179</a></span>
 </pre></div>
 </div>
 
@@ -2899,7 +2899,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n180" name="n180">180</a></strong></span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n180" name="n180">180</a></strong></span>        <span class="comment"># if config max_offenses then audit it with detected offenses number in report</span>
 </pre></div>
 </div>
 
@@ -2915,7 +2915,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n181" name="n181">181</a></span>        <span class="comment"># if config max_offenses then audit it with detected offenses number in report</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n181" name="n181">181</a></span>        <span class="keyword">if</span> options[<span class="symbol">:max_offenses</span>]
 </pre></div>
 </div>
 
@@ -2931,7 +2931,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n182" name="n182">182</a></span>        <span class="keyword">if</span> options[<span class="symbol">:max_offenses</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n182" name="n182">182</a></span>          <span class="keyword">if</span> report[<span class="integer">-20</span>..<span class="integer">-1</span>] =~ <span class="regexp"><span class="delimiter">/</span><span class="content">(</span><span class="char">\d</span><span class="content">+) *Total</span><span class="delimiter">/</span></span>
 </pre></div>
 </div>
 
@@ -2947,7 +2947,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n183" name="n183">183</a></span>          <span class="keyword">if</span> report[<span class="integer">-20</span>..<span class="integer">-1</span>] =~ <span class="regexp"><span class="delimiter">/</span><span class="content">(</span><span class="char">\d</span><span class="content">+) *Total</span><span class="delimiter">/</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n183" name="n183">183</a></span>            detected_offenses = <span class="global-variable">$1</span>.to_i
 </pre></div>
 </div>
 
@@ -2963,7 +2963,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n184" name="n184">184</a></span>            detected_offenses = <span class="global-variable">$1</span>.to_i
+  <div class="code"><pre><span class="line-numbers"><a href="#n184" name="n184">184</a></span>            max_offenses = options[<span class="symbol">:max_offenses</span>].to_i
 </pre></div>
 </div>
 
@@ -2979,7 +2979,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n185" name="n185">185</a></span>            max_offenses = options[<span class="symbol">:max_offenses</span>].to_i
+  <div class="code"><pre><span class="line-numbers"><a href="#n185" name="n185">185</a></span>            audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="content">Detected offenses </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(detected_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is more then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(max_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a lower </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">max_offenses</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> detected_offenses &gt; max_offenses
 </pre></div>
 </div>
 
@@ -2995,7 +2995,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n186" name="n186">186</a></span>            audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="content">Detected offenses </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(detected_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is more then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(max_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a lower </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">max_offenses</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> detected_offenses &gt; max_offenses
+  <div class="code"><pre><span class="line-numbers"><a href="#n186" name="n186">186</a></span>          <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -3011,7 +3011,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n187" name="n187">187</a></span>          <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n187" name="n187">187</a></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -3027,7 +3027,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n188" name="n188">188</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n188" name="n188">188</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -3043,7 +3043,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n189" name="n189">189</a></span>      <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n189" name="n189">189</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -3059,7 +3059,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n190" name="n190">190</a></strong></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n190" name="n190">190</a></strong></span>
 </pre></div>
 </div>
 
@@ -3075,7 +3075,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n191" name="n191">191</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n191" name="n191">191</a></span>    desc <span class="string"><span class="delimiter">&quot;</span><span class="content">metric_fu - many kinds of metrics</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3091,7 +3091,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n192" name="n192">192</a></span>    desc <span class="string"><span class="delimiter">&quot;</span><span class="content">metric_fu - many kinds of metrics</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n192" name="n192">192</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:metric_fu metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=9 roodi_max_offenses=10</span>
 </pre></div>
 </div>
 
@@ -3107,7 +3107,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n193" name="n193">193</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:metric_fu metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=9 roodi_max_offenses=10</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n193" name="n193">193</a></span>    <span class="comment"># options:</span>
 </pre></div>
 </div>
 
@@ -3123,7 +3123,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n194" name="n194">194</a></span>    <span class="comment"># options:</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n194" name="n194">194</a></span>    <span class="comment">#   metrics: default to run all metrics, can be config as: cane,churn,flay,flog,hotspots,rails_best_practices,rcov,reek,roodi,saikuro,stats</span>
 </pre></div>
 </div>
 
@@ -3139,7 +3139,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n195" name="n195">195</a></span>    <span class="comment">#   metrics: default to run all metrics, can be config as: cane,churn,flay,flog,hotspots,rails_best_practices,rcov,reek,roodi,saikuro,stats</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n195" name="n195">195</a></span>    <span class="comment">#   flay_max_offenses: offenses number for audit</span>
 </pre></div>
 </div>
 
@@ -3155,7 +3155,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n196" name="n196">196</a></span>    <span class="comment">#   flay_max_offenses: offenses number for audit</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n196" name="n196">196</a></span>    <span class="comment">#   cane_max_offenses: offenses number for audit</span>
 </pre></div>
 </div>
 
@@ -3171,7 +3171,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n197" name="n197">197</a></span>    <span class="comment">#   cane_max_offenses: offenses number for audit</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n197" name="n197">197</a></span>    <span class="comment">#   rails_best_practices_max_offenses: offenses number for audit</span>
 </pre></div>
 </div>
 
@@ -3187,7 +3187,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n198" name="n198">198</a></span>    <span class="comment">#   rails_best_practices_max_offenses: offenses number for audit</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n198" name="n198">198</a></span>    <span class="comment">#   reek_max_offenses: offenses number for audit</span>
 </pre></div>
 </div>
 
@@ -3203,7 +3203,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n199" name="n199">199</a></span>    <span class="comment">#   reek_max_offenses: offenses number for audit</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n199" name="n199">199</a></span>    <span class="comment">#   roodi_max_offenses: offenses number for audit</span>
 </pre></div>
 </div>
 
@@ -3219,7 +3219,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n200" name="n200">200</a></strong></span>    <span class="comment">#   roodi_max_offenses: offenses number for audit</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n200" name="n200">200</a></strong></span>    task <span class="symbol">:metric_fu</span> =&gt; <span class="symbol">:prepare</span> <span class="keyword">do</span> |task|
 </pre></div>
 </div>
 
@@ -3235,7 +3235,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n201" name="n201">201</a></span>    task <span class="symbol">:metric_fu</span> =&gt; <span class="symbol">:prepare</span> <span class="keyword">do</span> |task|
+  <div class="code"><pre><span class="line-numbers"><a href="#n201" name="n201">201</a></span>      metrics_offenses_patterns = {
 </pre></div>
 </div>
 
@@ -3251,7 +3251,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n202" name="n202">202</a></span>      metrics_offenses_patterns = {
+  <div class="code"><pre><span class="line-numbers"><a href="#n202" name="n202">202</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">flay</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Total Score (</span><span class="char">\d</span><span class="content">+)</span><span class="delimiter">/</span></span>,
 </pre></div>
 </div>
 
@@ -3267,7 +3267,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n203" name="n203">203</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">flay</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Total Score (</span><span class="char">\d</span><span class="content">+)</span><span class="delimiter">/</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n203" name="n203">203</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">cane</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Total Violations (</span><span class="char">\d</span><span class="content">+)</span><span class="delimiter">/</span></span>,
 </pre></div>
 </div>
 
@@ -3283,7 +3283,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n204" name="n204">204</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">cane</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Total Violations (</span><span class="char">\d</span><span class="content">+)</span><span class="delimiter">/</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n204" name="n204">204</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">rails_best_practices</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Found (</span><span class="char">\d</span><span class="content">+) errors</span><span class="delimiter">/</span></span>,
 </pre></div>
 </div>
 
@@ -3299,7 +3299,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n205" name="n205">205</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">rails_best_practices</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Found (</span><span class="char">\d</span><span class="content">+) errors</span><span class="delimiter">/</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n205" name="n205">205</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">reek</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Found (</span><span class="char">\d</span><span class="content">+) code smells</span><span class="delimiter">/</span></span>,
 </pre></div>
 </div>
 
@@ -3315,7 +3315,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n206" name="n206">206</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">reek</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Found (</span><span class="char">\d</span><span class="content">+) code smells</span><span class="delimiter">/</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n206" name="n206">206</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">roodi</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Found (</span><span class="char">\d</span><span class="content">+) errors</span><span class="delimiter">/</span></span>,
 </pre></div>
 </div>
 
@@ -3331,7 +3331,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n207" name="n207">207</a></span>        <span class="string"><span class="delimiter">&quot;</span><span class="content">roodi</span><span class="delimiter">&quot;</span></span> =&gt; <span class="regexp"><span class="delimiter">/</span><span class="content">Found (</span><span class="char">\d</span><span class="content">+) errors</span><span class="delimiter">/</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n207" name="n207">207</a></span>      }
 </pre></div>
 </div>
 
@@ -3347,7 +3347,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n208" name="n208">208</a></span>      }
+  <div class="code"><pre><span class="line-numbers"><a href="#n208" name="n208">208</a></span>      metrics_have_offenses = metrics_offenses_patterns.keys.map { |metric| <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>metric<span class="inline-delimiter">}</span></span><span class="content">_max_offenses</span><span class="delimiter">&quot;</span></span>.to_sym }
 </pre></div>
 </div>
 
@@ -3363,7 +3363,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n209" name="n209">209</a></span>      metrics_have_offenses = metrics_offenses_patterns.keys.map { |metric| <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>metric<span class="inline-delimiter">}</span></span><span class="content">_max_offenses</span><span class="delimiter">&quot;</span></span>.to_sym }
+  <div class="code"><pre><span class="line-numbers"><a href="#n209" name="n209">209</a></span>      options = options_from_env(<span class="symbol">:metrics</span>, *metrics_have_offenses)
 </pre></div>
 </div>
 
@@ -3379,7 +3379,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n210" name="n210">210</a></strong></span>      options = options_from_env(<span class="symbol">:metrics</span>, *metrics_have_offenses)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n210" name="n210">210</a></strong></span>      run_audit task, <span class="string"><span class="delimiter">&quot;</span><span class="content">metric_fu - Code metrics from Flog, Flay, Saikuro, Churn, Reek, Roodi, Code Statistics, and Rails Best Practices. (and optionally RCov)</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
 </pre></div>
 </div>
 
@@ -3395,7 +3395,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n211" name="n211">211</a></span>      run_audit task, <span class="string"><span class="delimiter">&quot;</span><span class="content">metric_fu - Code metrics from Flog, Flay, Saikuro, Churn, Reek, Roodi, Code Statistics, and Rails Best Practices. (and optionally RCov)</span><span class="delimiter">&quot;</span></span> <span class="keyword">do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n211" name="n211">211</a></span>        report_path = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/metric_fu</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3411,7 +3411,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n212" name="n212">212</a></span>        report_path = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_dir<span class="inline-delimiter">}</span></span><span class="content">/metric_fu</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n212" name="n212">212</a></span>        available_metrics = <span class="string"><span class="delimiter">%w{</span><span class="content">cane churn flay flog hotspots rails_best_practices rcov reek roodi saikuro stats</span><span class="delimiter">}</span></span>
 </pre></div>
 </div>
 
@@ -3427,7 +3427,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n213" name="n213">213</a></span>        available_metrics = <span class="string"><span class="delimiter">%w{</span><span class="content">cane churn flay flog hotspots rails_best_practices rcov reek roodi saikuro stats</span><span class="delimiter">}</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n213" name="n213">213</a></span>        metric_fu_opts = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3443,7 +3443,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n214" name="n214">214</a></span>        metric_fu_opts = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n214" name="n214">214</a></span>        selected_metrics = available_metrics
 </pre></div>
 </div>
 
@@ -3459,7 +3459,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n215" name="n215">215</a></span>        selected_metrics = available_metrics
+  <div class="code"><pre><span class="line-numbers"><a href="#n215" name="n215">215</a></span>        <span class="keyword">if</span> options[<span class="symbol">:metrics</span>]
 </pre></div>
 </div>
 
@@ -3475,7 +3475,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n216" name="n216">216</a></span>        <span class="keyword">if</span> options[<span class="symbol">:metrics</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n216" name="n216">216</a></span>          selected_metrics = options[<span class="symbol">:metrics</span>].split(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -3491,7 +3491,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n217" name="n217">217</a></span>          selected_metrics = options[<span class="symbol">:metrics</span>].split(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n217" name="n217">217</a></span>          disable_metrics = available_metrics - selected_metrics
 </pre></div>
 </div>
 
@@ -3507,7 +3507,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n218" name="n218">218</a></span>          disable_metrics = available_metrics - selected_metrics
+  <div class="code"><pre><span class="line-numbers"><a href="#n218" name="n218">218</a></span>          selected_metrics_opt = selected_metrics.map { |m| <span class="string"><span class="delimiter">&quot;</span><span class="content">--</span><span class="inline"><span class="inline-delimiter">#{</span>m<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> }.join(<span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -3523,7 +3523,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n219" name="n219">219</a></span>          selected_metrics_opt = selected_metrics.map { |m| <span class="string"><span class="delimiter">&quot;</span><span class="content">--</span><span class="inline"><span class="inline-delimiter">#{</span>m<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> }.join(<span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n219" name="n219">219</a></span>          disable_metrics_opt = disable_metrics.map { |m| <span class="string"><span class="delimiter">&quot;</span><span class="content">--no-</span><span class="inline"><span class="inline-delimiter">#{</span>m<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> }.join(<span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -3539,7 +3539,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n220" name="n220">220</a></strong></span>          disable_metrics_opt = disable_metrics.map { |m| <span class="string"><span class="delimiter">&quot;</span><span class="content">--no-</span><span class="inline"><span class="inline-delimiter">#{</span>m<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> }.join(<span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n220" name="n220">220</a></strong></span>          metric_fu_opts = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>selected_metrics_opt<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="inline"><span class="inline-delimiter">#{</span>disable_metrics_opt<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3555,7 +3555,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n221" name="n221">221</a></span>          metric_fu_opts = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>selected_metrics_opt<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="inline"><span class="inline-delimiter">#{</span>disable_metrics_opt<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n221" name="n221">221</a></span>          puts <span class="string"><span class="delimiter">&quot;</span><span class="content">for metrics: </span><span class="inline"><span class="inline-delimiter">#{</span>selected_metrics.join(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3571,7 +3571,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n222" name="n222">222</a></span>          puts <span class="string"><span class="delimiter">&quot;</span><span class="content">for metrics: </span><span class="inline"><span class="inline-delimiter">#{</span>selected_metrics.join(<span class="string"><span class="delimiter">&quot;</span><span class="content">,</span><span class="delimiter">&quot;</span></span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n222" name="n222">222</a></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -3587,7 +3587,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n223" name="n223">223</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n223" name="n223">223</a></span>        <span class="comment"># geneate report</span>
 </pre></div>
 </div>
 
@@ -3603,7 +3603,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n224" name="n224">224</a></span>        <span class="comment"># geneate report</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n224" name="n224">224</a></span>        report = <span class="shell"><span class="delimiter">`</span><span class="content">metric_fu --no-open </span><span class="inline"><span class="inline-delimiter">#{</span>metric_fu_opts<span class="inline-delimiter">}</span></span><span class="delimiter">`</span></span>
 </pre></div>
 </div>
 
@@ -3619,7 +3619,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n225" name="n225">225</a></span>        report = <span class="shell"><span class="delimiter">`</span><span class="content">bundle exec metric_fu --no-open </span><span class="inline"><span class="inline-delimiter">#{</span>metric_fu_opts<span class="inline-delimiter">}</span></span><span class="delimiter">`</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n225" name="n225">225</a></span>        <span class="constant">FileUtils</span>.remove_dir(report_path) <span class="keyword">if</span> <span class="constant">Dir</span>.exists? report_path
 </pre></div>
 </div>
 
@@ -3635,7 +3635,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n226" name="n226">226</a></span>        <span class="constant">FileUtils</span>.remove_dir(report_path) <span class="keyword">if</span> <span class="constant">Dir</span>.exists? report_path
+  <div class="code"><pre><span class="line-numbers"><a href="#n226" name="n226">226</a></span>        <span class="constant">FileUtils</span>.mv(<span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/metric_fu/output</span><span class="delimiter">&quot;</span></span>, report_path, <span class="key">force</span>: <span class="predefined-constant">true</span>)
 </pre></div>
 </div>
 
@@ -3651,7 +3651,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n227" name="n227">227</a></span>        <span class="constant">FileUtils</span>.mv(<span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/metric_fu/output</span><span class="delimiter">&quot;</span></span>, report_path, <span class="key">force</span>: <span class="predefined-constant">true</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n227" name="n227">227</a></span>        puts report
 </pre></div>
 </div>
 
@@ -3667,7 +3667,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n228" name="n228">228</a></span>        puts report
+  <div class="code"><pre><span class="line-numbers"><a href="#n228" name="n228">228</a></span>        puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Report generated to </span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3683,7 +3683,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n229" name="n229">229</a></span>        puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Report generated to </span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n229" name="n229">229</a></span>        show_in_browser <span class="constant">File</span>.realpath(report_path)
 </pre></div>
 </div>
 
@@ -3699,7 +3699,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n230" name="n230">230</a></strong></span>        show_in_browser <span class="constant">File</span>.realpath(report_path)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n230" name="n230">230</a></strong></span>        <span class="instance-variable">@report_path</span> = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="content">/index.html</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3715,7 +3715,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n231" name="n231">231</a></span>        <span class="instance-variable">@report_path</span> = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>report_path<span class="inline-delimiter">}</span></span><span class="content">/index.html</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n231" name="n231">231</a></span>
 </pre></div>
 </div>
 
@@ -3731,7 +3731,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n232" name="n232">232</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n232" name="n232">232</a></span>        <span class="comment"># audit report result</span>
 </pre></div>
 </div>
 
@@ -3747,7 +3747,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n233" name="n233">233</a></span>        <span class="comment"># audit report result</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n233" name="n233">233</a></span>        report_result_path = <span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/metric_fu/report.yml</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3763,7 +3763,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n234" name="n234">234</a></span>        report_result_path = <span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/metric_fu/report.yml</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n234" name="n234">234</a></span>        <span class="keyword">if</span> <span class="constant">File</span>.exists? report_result_path
 </pre></div>
 </div>
 
@@ -3779,7 +3779,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n235" name="n235">235</a></span>        <span class="keyword">if</span> <span class="constant">File</span>.exists? report_result_path
+  <div class="code"><pre><span class="line-numbers"><a href="#n235" name="n235">235</a></span>          require <span class="string"><span class="delimiter">'</span><span class="content">yaml</span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -3795,7 +3795,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n236" name="n236">236</a></span>          require <span class="string"><span class="delimiter">'</span><span class="content">yaml</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n236" name="n236">236</a></span>          report_result = <span class="constant">YAML</span>.load_file(report_result_path)
 </pre></div>
 </div>
 
@@ -3811,7 +3811,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n237" name="n237">237</a></span>          report_result = <span class="constant">YAML</span>.load_file(report_result_path)
+  <div class="code"><pre><span class="line-numbers"><a href="#n237" name="n237">237</a></span>          <span class="comment"># if config #{metric}_max_offenses then audit it with report result</span>
 </pre></div>
 </div>
 
@@ -3827,7 +3827,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n238" name="n238">238</a></span>          <span class="comment"># if config #{metric}_max_offenses then audit it with report result</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n238" name="n238">238</a></span>          audit_failures = []
 </pre></div>
 </div>
 
@@ -3843,7 +3843,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n239" name="n239">239</a></span>          audit_failures = []
+  <div class="code"><pre><span class="line-numbers"><a href="#n239" name="n239">239</a></span>          metrics_offenses_patterns.each <span class="keyword">do</span> |metric, pattern|
 </pre></div>
 </div>
 
@@ -3859,7 +3859,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n240" name="n240">240</a></strong></span>          metrics_offenses_patterns.each <span class="keyword">do</span> |metric, pattern|
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n240" name="n240">240</a></strong></span>            option_key = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>metric<span class="inline-delimiter">}</span></span><span class="content">_max_offenses</span><span class="delimiter">&quot;</span></span>.to_sym
 </pre></div>
 </div>
 
@@ -3875,7 +3875,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n241" name="n241">241</a></span>            option_key = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>metric<span class="inline-delimiter">}</span></span><span class="content">_max_offenses</span><span class="delimiter">&quot;</span></span>.to_sym
+  <div class="code"><pre><span class="line-numbers"><a href="#n241" name="n241">241</a></span>            <span class="keyword">if</span> options[option_key]
 </pre></div>
 </div>
 
@@ -3891,7 +3891,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n242" name="n242">242</a></span>            <span class="keyword">if</span> options[option_key]
+  <div class="code"><pre><span class="line-numbers"><a href="#n242" name="n242">242</a></span>              detected_offenses = report_result[metric.to_sym][<span class="symbol">:total</span>].to_s.match(pattern)[<span class="integer">1</span>].to_i <span class="keyword">rescue</span> <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -3907,7 +3907,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n243" name="n243">243</a></span>              detected_offenses = report_result[metric.to_sym][<span class="symbol">:total</span>].to_s.match(pattern)[<span class="integer">1</span>].to_i <span class="keyword">rescue</span> <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n243" name="n243">243</a></span>              max_offenses = options[option_key].to_i
 </pre></div>
 </div>
 
@@ -3923,7 +3923,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n244" name="n244">244</a></span>              max_offenses = options[option_key].to_i
+  <div class="code"><pre><span class="line-numbers"><a href="#n244" name="n244">244</a></span>              <span class="keyword">if</span> detected_offenses &gt; max_offenses
 </pre></div>
 </div>
 
@@ -3939,7 +3939,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n245" name="n245">245</a></span>              <span class="keyword">if</span> detected_offenses &gt; max_offenses
+  <div class="code"><pre><span class="line-numbers"><a href="#n245" name="n245">245</a></span>                puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Metric </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(metric, <span class="symbol">:green</span>)<span class="inline-delimiter">}</span></span><span class="content"> detected offenses </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(detected_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is more then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(max_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a lower </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(option_key, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -3955,7 +3955,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n246" name="n246">246</a></span>                puts <span class="string"><span class="delimiter">&quot;</span><span class="content">Metric </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(metric, <span class="symbol">:green</span>)<span class="inline-delimiter">}</span></span><span class="content"> detected offenses </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(detected_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is more then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(max_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a lower </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(option_key, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n246" name="n246">246</a></span>                audit_failures &lt;&lt; {<span class="key">metric</span>: metric, <span class="key">detected_offenses</span>: detected_offenses, <span class="key">max_offenses</span>: max_offenses}
 </pre></div>
 </div>
 
@@ -3971,7 +3971,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n247" name="n247">247</a></span>                audit_failures &lt;&lt; {<span class="key">metric</span>: metric, <span class="key">detected_offenses</span>: detected_offenses, <span class="key">max_offenses</span>: max_offenses}
+  <div class="code"><pre><span class="line-numbers"><a href="#n247" name="n247">247</a></span>              <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -3987,7 +3987,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n248" name="n248">248</a></span>              <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n248" name="n248">248</a></span>            <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4003,7 +4003,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n249" name="n249">249</a></span>            <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n249" name="n249">249</a></span>          <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4019,7 +4019,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n250" name="n250">250</a></strong></span>          <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n250" name="n250">250</a></strong></span>          audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>audit_failures.size<span class="inline-delimiter">}</span></span><span class="content"> of </span><span class="inline"><span class="inline-delimiter">#{</span>selected_metrics.size<span class="inline-delimiter">}</span></span><span class="content"> metrics audit failed</span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> audit_failures.any?
 </pre></div>
 </div>
 
@@ -4035,7 +4035,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n251" name="n251">251</a></span>          audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>audit_failures.size<span class="inline-delimiter">}</span></span><span class="content"> of </span><span class="inline"><span class="inline-delimiter">#{</span>selected_metrics.size<span class="inline-delimiter">}</span></span><span class="content"> metrics audit failed</span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> audit_failures.any?
+  <div class="code"><pre><span class="line-numbers"><a href="#n251" name="n251">251</a></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4051,7 +4051,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n252" name="n252">252</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n252" name="n252">252</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4067,7 +4067,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n253" name="n253">253</a></span>      <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n253" name="n253">253</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4083,7 +4083,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n254" name="n254">254</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n254" name="n254">254</a></span>
 </pre></div>
 </div>
 
@@ -4099,7 +4099,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n255" name="n255">255</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n255" name="n255">255</a></span>    <span class="comment"># desc &quot;resources url&quot;</span>
 </pre></div>
 </div>
 
@@ -4115,7 +4115,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n256" name="n256">256</a></span>    <span class="comment"># desc &quot;resources url&quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n256" name="n256">256</a></span>    task <span class="symbol">:resources</span> <span class="keyword">do</span>
 </pre></div>
 </div>
 
@@ -4131,8 +4131,8 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n257" name="n257">257</a></span>    task <span class="symbol">:resources</span> <span class="keyword">do</span>
-</pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n257" name="n257">257</a></span>      refs = <span class="string"><span class="delimiter">%w{</span><span class="content"></span></span>
+<span class="line-numbers"><a href="#n258" name="n258">258</a></span><span class="string"><span class="content"></span></span></pre></div>
 </div>
 
           </td>
@@ -4147,8 +4147,8 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n258" name="n258">258</a></span>      refs = <span class="string"><span class="delimiter">%w{</span><span class="content"></span></span>
-<span class="line-numbers"><a href="#n259" name="n259">259</a></span><span class="string"><span class="content"></span></span></pre></div>
+  <div class="code"><pre><span class="line-numbers"><a href="#n258" name="n258">258</a></span>        <span class="key">http</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>awesome-ruby.com/<span class="comment">#-code-analysis-and-metrics</span>
+</pre></div>
 </div>
 
           </td>
@@ -4163,7 +4163,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n259" name="n259">259</a></span>        <span class="key">http</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>awesome-ruby.com/<span class="comment">#-code-analysis-and-metrics</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n259" name="n259">259</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/whitesmith/rubycritic
 </pre></div>
 </div>
 
@@ -4179,7 +4179,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n260" name="n260">260</a></strong></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/whitesmith/rubycritic
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n260" name="n260">260</a></strong></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/bbatsov/rubocop
 </pre></div>
 </div>
 
@@ -4195,7 +4195,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n261" name="n261">261</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/bbatsov/rubocop
+  <div class="code"><pre><span class="line-numbers"><a href="#n261" name="n261">261</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/bbatsov/ruby-style-guide
 </pre></div>
 </div>
 
@@ -4211,7 +4211,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n262" name="n262">262</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/bbatsov/ruby-style-guide
+  <div class="code"><pre><span class="line-numbers"><a href="#n262" name="n262">262</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/github/rubocop-github
 </pre></div>
 </div>
 
@@ -4227,7 +4227,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n263" name="n263">263</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/github/rubocop-github
+  <div class="code"><pre><span class="line-numbers"><a href="#n263" name="n263">263</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/metricfu/metric_fu
 </pre></div>
 </div>
 
@@ -4243,7 +4243,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n264" name="n264">264</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>github.com/metricfu/metric_fu
+  <div class="code"><pre><span class="line-numbers"><a href="#n264" name="n264">264</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>rails-bestpractices.com
 </pre></div>
 </div>
 
@@ -4259,7 +4259,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n265" name="n265">265</a></span>        <span class="key">https</span>:<span class="regexp"><span class="delimiter">/</span><span class="delimiter">/</span></span>rails-bestpractices.com
+  <div class="code"><pre><span class="line-numbers"><a href="#n265" name="n265">265</a></span>      }
 </pre></div>
 </div>
 
@@ -4275,7 +4275,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n266" name="n266">266</a></span>      }
+  <div class="code"><pre><span class="line-numbers"><a href="#n266" name="n266">266</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">## Code Quality Resources</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -4291,7 +4291,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n267" name="n267">267</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">## Code Quality Resources</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n267" name="n267">267</a></span>      puts refs.map { |url| <span class="string"><span class="delimiter">&quot;</span><span class="content">  - </span><span class="inline"><span class="inline-delimiter">#{</span>url<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> }
 </pre></div>
 </div>
 
@@ -4307,7 +4307,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n268" name="n268">268</a></span>      puts refs.map { |url| <span class="string"><span class="delimiter">&quot;</span><span class="content">  - </span><span class="inline"><span class="inline-delimiter">#{</span>url<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> }
+  <div class="code"><pre><span class="line-numbers"><a href="#n268" name="n268">268</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4323,7 +4323,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n269" name="n269">269</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n269" name="n269">269</a></span>  <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4339,7 +4339,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n270" name="n270">270</a></strong></span>  <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n270" name="n270">270</a></strong></span>
 </pre></div>
 </div>
 
@@ -4355,7 +4355,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n271" name="n271">271</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n271" name="n271">271</a></span>  <span class="comment"># desc &quot;helper methods&quot;</span>
 </pre></div>
 </div>
 
@@ -4371,7 +4371,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n272" name="n272">272</a></span>  <span class="comment"># desc &quot;helper methods&quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n272" name="n272">272</a></span>  task <span class="symbol">:helpers</span> <span class="keyword">do</span>
 </pre></div>
 </div>
 
@@ -4387,7 +4387,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n273" name="n273">273</a></span>  task <span class="symbol">:helpers</span> <span class="keyword">do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n273" name="n273">273</a></span>    <span class="keyword">def</span> <span class="function">run_audit</span>(task, title, &amp;block)
 </pre></div>
 </div>
 
@@ -4403,7 +4403,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n274" name="n274">274</a></span>    <span class="keyword">def</span> <span class="function">run_audit</span>(task, title, &amp;block)
+  <div class="code"><pre><span class="line-numbers"><a href="#n274" name="n274">274</a></span>      task_name = task.name.split(<span class="string"><span class="delimiter">&quot;</span><span class="content">:</span><span class="delimiter">&quot;</span></span>).last
 </pre></div>
 </div>
 
@@ -4419,7 +4419,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n275" name="n275">275</a></span>      task_name = task.name.split(<span class="string"><span class="delimiter">&quot;</span><span class="content">:</span><span class="delimiter">&quot;</span></span>).last
+  <div class="code"><pre><span class="line-numbers"><a href="#n275" name="n275">275</a></span>      <span class="instance-variable">@audit_tasks</span> ||= {}
 </pre></div>
 </div>
 
@@ -4435,7 +4435,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n276" name="n276">276</a></span>      <span class="instance-variable">@audit_tasks</span> ||= {}
+  <div class="code"><pre><span class="line-numbers"><a href="#n276" name="n276">276</a></span>      <span class="instance-variable">@audit_tasks</span>[task_name] ||= {
 </pre></div>
 </div>
 
@@ -4451,7 +4451,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n277" name="n277">277</a></span>      <span class="instance-variable">@audit_tasks</span>[task_name] ||= {
+  <div class="code"><pre><span class="line-numbers"><a href="#n277" name="n277">277</a></span>        <span class="key">report_path</span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>,
 </pre></div>
 </div>
 
@@ -4467,7 +4467,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n278" name="n278">278</a></span>        <span class="key">report_path</span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n278" name="n278">278</a></span>        <span class="key">failure</span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>,
 </pre></div>
 </div>
 
@@ -4483,7 +4483,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n279" name="n279">279</a></span>        <span class="key">failure</span>: <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>,
+  <div class="code"><pre><span class="line-numbers"><a href="#n279" name="n279">279</a></span>      }
 </pre></div>
 </div>
 
@@ -4499,7 +4499,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n280" name="n280">280</a></strong></span>      }
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n280" name="n280">280</a></strong></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">## </span><span class="inline"><span class="inline-delimiter">#{</span>title<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -4515,7 +4515,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n281" name="n281">281</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">## </span><span class="inline"><span class="inline-delimiter">#{</span>title<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n281" name="n281">281</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">```</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -4531,7 +4531,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n282" name="n282">282</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">```</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n282" name="n282">282</a></span>      exc = <span class="predefined-constant">nil</span>
 </pre></div>
 </div>
 
@@ -4547,7 +4547,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n283" name="n283">283</a></span>      exc = <span class="predefined-constant">nil</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n283" name="n283">283</a></span>      <span class="keyword">begin</span>
 </pre></div>
 </div>
 
@@ -4563,7 +4563,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n284" name="n284">284</a></span>      <span class="keyword">begin</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n284" name="n284">284</a></span>        realtime(&amp;block)
 </pre></div>
 </div>
 
@@ -4579,7 +4579,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n285" name="n285">285</a></span>        realtime(&amp;block)
+  <div class="code"><pre><span class="line-numbers"><a href="#n285" name="n285">285</a></span>      <span class="keyword">rescue</span> <span class="constant">SystemExit</span> =&gt; exc
 </pre></div>
 </div>
 
@@ -4595,7 +4595,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n286" name="n286">286</a></span>      <span class="keyword">rescue</span> <span class="constant">SystemExit</span> =&gt; exc
+  <div class="code"><pre><span class="line-numbers"><a href="#n286" name="n286">286</a></span>        <span class="comment"># audit faild</span>
 </pre></div>
 </div>
 
@@ -4611,7 +4611,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n287" name="n287">287</a></span>        <span class="comment"># audit faild</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n287" name="n287">287</a></span>        <span class="instance-variable">@audit_tasks</span>[task_name][<span class="symbol">:failure</span>] = exc.message.gsub(<span class="regexp"><span class="delimiter">/</span><span class="content">(</span><span class="char">\e</span><span class="char">\[</span><span class="char">\d</span><span class="content">+m)</span><span class="delimiter">/</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -4627,7 +4627,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n288" name="n288">288</a></span>        <span class="instance-variable">@audit_tasks</span>[task_name][<span class="symbol">:failure</span>] = exc.message.gsub(<span class="regexp"><span class="delimiter">/</span><span class="content">(</span><span class="char">\e</span><span class="char">\[</span><span class="char">\d</span><span class="content">+m)</span><span class="delimiter">/</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n288" name="n288">288</a></span>      <span class="keyword">ensure</span>
 </pre></div>
 </div>
 
@@ -4643,7 +4643,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n289" name="n289">289</a></span>      <span class="keyword">ensure</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n289" name="n289">289</a></span>        <span class="comment"># get @report_path set in each audit task</span>
 </pre></div>
 </div>
 
@@ -4659,7 +4659,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n290" name="n290">290</a></strong></span>        <span class="comment"># get @report_path set in each audit task</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n290" name="n290">290</a></strong></span>        <span class="instance-variable">@audit_tasks</span>[task_name][<span class="symbol">:report_path</span>] = <span class="instance-variable">@report_path</span>&amp;.sub(<span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/code_quality/</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -4675,7 +4675,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n291" name="n291">291</a></span>        <span class="instance-variable">@audit_tasks</span>[task_name][<span class="symbol">:report_path</span>] = <span class="instance-variable">@report_path</span>.sub(<span class="string"><span class="delimiter">&quot;</span><span class="content">tmp/code_quality/</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n291" name="n291">291</a></span>      <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4691,7 +4691,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n292" name="n292">292</a></span>      <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n292" name="n292">292</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">```</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -4707,7 +4707,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n293" name="n293">293</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">```</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n293" name="n293">293</a></span>      raise exc <span class="keyword">if</span> exc
 </pre></div>
 </div>
 
@@ -4723,7 +4723,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n294" name="n294">294</a></span>      raise exc <span class="keyword">if</span> exc
+  <div class="code"><pre><span class="line-numbers"><a href="#n294" name="n294">294</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4739,7 +4739,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n295" name="n295">295</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n295" name="n295">295</a></span>
 </pre></div>
 </div>
 
@@ -4755,7 +4755,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n296" name="n296">296</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n296" name="n296">296</a></span>    <span class="keyword">def</span> <span class="function">realtime</span>(&amp;block)
 </pre></div>
 </div>
 
@@ -4771,7 +4771,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n297" name="n297">297</a></span>    <span class="keyword">def</span> <span class="function">realtime</span>(&amp;block)
+  <div class="code"><pre><span class="line-numbers"><a href="#n297" name="n297">297</a></span>      require <span class="string"><span class="delimiter">'</span><span class="content">benchmark</span><span class="delimiter">'</span></span>
 </pre></div>
 </div>
 
@@ -4787,7 +4787,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n298" name="n298">298</a></span>      require <span class="string"><span class="delimiter">'</span><span class="content">benchmark</span><span class="delimiter">'</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n298" name="n298">298</a></span>      realtime = <span class="constant">Benchmark</span>.realtime <span class="keyword">do</span>
 </pre></div>
 </div>
 
@@ -4803,7 +4803,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n299" name="n299">299</a></span>      realtime = <span class="constant">Benchmark</span>.realtime <span class="keyword">do</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n299" name="n299">299</a></span>        block.call
 </pre></div>
 </div>
 
@@ -4819,7 +4819,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n300" name="n300">300</a></strong></span>        block.call
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n300" name="n300">300</a></strong></span>      <span class="keyword">end</span>.round
 </pre></div>
 </div>
 
@@ -4835,7 +4835,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n301" name="n301">301</a></span>      <span class="keyword">end</span>.round
+  <div class="code"><pre><span class="line-numbers"><a href="#n301" name="n301">301</a></span>      process_time = humanize_secs(realtime)
 </pre></div>
 </div>
 
@@ -4851,7 +4851,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n302" name="n302">302</a></span>      process_time = humanize_secs(realtime)
+  <div class="code"><pre><span class="line-numbers"><a href="#n302" name="n302">302</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">[ </span><span class="inline"><span class="inline-delimiter">#{</span>process_time<span class="inline-delimiter">}</span></span><span class="content"> ]</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -4867,7 +4867,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n303" name="n303">303</a></span>      puts <span class="string"><span class="delimiter">&quot;</span><span class="content">[ </span><span class="inline"><span class="inline-delimiter">#{</span>process_time<span class="inline-delimiter">}</span></span><span class="content"> ]</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n303" name="n303">303</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -4883,7 +4883,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n304" name="n304">304</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n304" name="n304">304</a></span>
 </pre></div>
 </div>
 
@@ -4899,7 +4899,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n305" name="n305">305</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n305" name="n305">305</a></span>    <span class="comment"># p humanize_secs 60</span>
 </pre></div>
 </div>
 
@@ -4915,7 +4915,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n306" name="n306">306</a></span>    <span class="comment"># p humanize_secs 60</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n306" name="n306">306</a></span>    <span class="comment"># =&gt; 1m</span>
 </pre></div>
 </div>
 
@@ -4931,7 +4931,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n307" name="n307">307</a></span>    <span class="comment"># =&gt; 1m</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n307" name="n307">307</a></span>    <span class="comment"># p humanize_secs 1234</span>
 </pre></div>
 </div>
 
@@ -4947,7 +4947,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n308" name="n308">308</a></span>    <span class="comment"># p humanize_secs 1234</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n308" name="n308">308</a></span>    <span class="comment">#=&gt;&quot;20m 34s&quot;</span>
 </pre></div>
 </div>
 
@@ -4963,7 +4963,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n309" name="n309">309</a></span>    <span class="comment">#=&gt;&quot;20m 34s&quot;</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n309" name="n309">309</a></span>    <span class="keyword">def</span> <span class="function">humanize_secs</span>(secs)
 </pre></div>
 </div>
 
@@ -4979,7 +4979,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n310" name="n310">310</a></strong></span>    <span class="keyword">def</span> <span class="function">humanize_secs</span>(secs)
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n310" name="n310">310</a></strong></span>      [[<span class="integer">60</span>, <span class="symbol">:s</span>], [<span class="integer">60</span>, <span class="symbol">:m</span>], [<span class="integer">24</span>, <span class="symbol">:h</span>], [<span class="integer">1000</span>, <span class="symbol">:d</span>]].map{ |count, name|
 </pre></div>
 </div>
 
@@ -4995,7 +4995,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n311" name="n311">311</a></span>      [[<span class="integer">60</span>, <span class="symbol">:s</span>], [<span class="integer">60</span>, <span class="symbol">:m</span>], [<span class="integer">24</span>, <span class="symbol">:h</span>], [<span class="integer">1000</span>, <span class="symbol">:d</span>]].map{ |count, name|
+  <div class="code"><pre><span class="line-numbers"><a href="#n311" name="n311">311</a></span>        <span class="keyword">if</span> secs &gt; <span class="integer">0</span>
 </pre></div>
 </div>
 
@@ -5011,7 +5011,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n312" name="n312">312</a></span>        <span class="keyword">if</span> secs &gt; <span class="integer">0</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n312" name="n312">312</a></span>          secs, n = secs.divmod(count)
 </pre></div>
 </div>
 
@@ -5027,7 +5027,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n313" name="n313">313</a></span>          secs, n = secs.divmod(count)
+  <div class="code"><pre><span class="line-numbers"><a href="#n313" name="n313">313</a></span>          <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>n.to_i<span class="inline-delimiter">}</span></span><span class="inline"><span class="inline-delimiter">#{</span>name<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -5043,7 +5043,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n314" name="n314">314</a></span>          <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>n.to_i<span class="inline-delimiter">}</span></span><span class="inline"><span class="inline-delimiter">#{</span>name<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n314" name="n314">314</a></span>        <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -5059,7 +5059,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n315" name="n315">315</a></span>        <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n315" name="n315">315</a></span>      }.compact.reverse.join(<span class="string"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>).chomp(<span class="string"><span class="delimiter">'</span><span class="content"> 0s</span><span class="delimiter">'</span></span>)
 </pre></div>
 </div>
 
@@ -5075,7 +5075,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n316" name="n316">316</a></span>      }.compact.reverse.join(<span class="string"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>).chomp(<span class="string"><span class="delimiter">'</span><span class="content"> 0s</span><span class="delimiter">'</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n316" name="n316">316</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -5091,7 +5091,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n317" name="n317">317</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n317" name="n317">317</a></span>
 </pre></div>
 </div>
 
@@ -5107,7 +5107,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n318" name="n318">318</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n318" name="n318">318</a></span>    <span class="keyword">def</span> <span class="function">prepare_dir</span>(dir)
 </pre></div>
 </div>
 
@@ -5123,7 +5123,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n319" name="n319">319</a></span>    <span class="keyword">def</span> <span class="function">prepare_dir</span>(dir)
+  <div class="code"><pre><span class="line-numbers"><a href="#n319" name="n319">319</a></span>      <span class="constant">FileUtils</span>.mkdir_p dir
 </pre></div>
 </div>
 
@@ -5139,7 +5139,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n320" name="n320">320</a></strong></span>      <span class="constant">FileUtils</span>.mkdir_p dir
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n320" name="n320">320</a></strong></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -5155,7 +5155,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n321" name="n321">321</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n321" name="n321">321</a></span>
 </pre></div>
 </div>
 
@@ -5171,7 +5171,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n322" name="n322">322</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n322" name="n322">322</a></span>    <span class="keyword">def</span> <span class="function">audit_faild</span>(msg)
 </pre></div>
 </div>
 
@@ -5187,7 +5187,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n323" name="n323">323</a></span>    <span class="keyword">def</span> <span class="function">audit_faild</span>(msg)
+  <div class="code"><pre><span class="line-numbers"><a href="#n323" name="n323">323</a></span>      flag = colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">[AUDIT FAILED]</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:red</span>, <span class="symbol">:yellow</span>)
 </pre></div>
 </div>
 
@@ -5203,7 +5203,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n324" name="n324">324</a></span>      flag = colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">[AUDIT FAILED]</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:red</span>, <span class="symbol">:yellow</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n324" name="n324">324</a></span>      abort <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>flag<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="inline"><span class="inline-delimiter">#{</span>msg<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -5219,7 +5219,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n325" name="n325">325</a></span>      abort <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">#{</span>flag<span class="inline-delimiter">}</span></span><span class="content"> </span><span class="inline"><span class="inline-delimiter">#{</span>msg<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n325" name="n325">325</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -5235,7 +5235,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n326" name="n326">326</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n326" name="n326">326</a></span>
 </pre></div>
 </div>
 
@@ -5251,7 +5251,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n327" name="n327">327</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n327" name="n327">327</a></span>    <span class="comment"># e.g.: options_from_env(:a, :b) =&gt; {:a =&gt; ..., :b =&gt; ... }</span>
 </pre></div>
 </div>
 
@@ -5267,7 +5267,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n328" name="n328">328</a></span>    <span class="comment"># e.g.: options_from_env(:a, :b) =&gt; {:a =&gt; ..., :b =&gt; ... }</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n328" name="n328">328</a></span>    <span class="keyword">def</span> <span class="function">options_from_env</span>(*keys)
 </pre></div>
 </div>
 
@@ -5283,7 +5283,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n329" name="n329">329</a></span>    <span class="keyword">def</span> <span class="function">options_from_env</span>(*keys)
+  <div class="code"><pre><span class="line-numbers"><a href="#n329" name="n329">329</a></span>      <span class="comment"># ENV.to_h.slice(*keys.map(&amp;:to_s)).symbolize_keys! # using ActiveSupport</span>
 </pre></div>
 </div>
 
@@ -5299,7 +5299,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n330" name="n330">330</a></strong></span>      <span class="comment"># ENV.to_h.slice(*keys.map(&amp;:to_s)).symbolize_keys! # using ActiveSupport</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n330" name="n330">330</a></strong></span>      <span class="predefined-constant">ENV</span>.to_h.inject({}) { |opts, (k, v)| keys.include?(k.to_sym) ? opts.merge({k.to_sym =&gt; v}) : opts }
 </pre></div>
 </div>
 
@@ -5315,7 +5315,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n331" name="n331">331</a></span>      <span class="predefined-constant">ENV</span>.to_h.inject({}) { |opts, (k, v)| keys.include?(k.to_sym) ? opts.merge({k.to_sym =&gt; v}) : opts }
+  <div class="code"><pre><span class="line-numbers"><a href="#n331" name="n331">331</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -5331,7 +5331,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n332" name="n332">332</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n332" name="n332">332</a></span>
 </pre></div>
 </div>
 
@@ -5347,7 +5347,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n333" name="n333">333</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n333" name="n333">333</a></span>    <span class="comment"># set text color, background color using ANSI escape sequences, e.g.:</span>
 </pre></div>
 </div>
 
@@ -5363,7 +5363,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n334" name="n334">334</a></span>    <span class="comment"># set text color, background color using ANSI escape sequences, e.g.:</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n334" name="n334">334</a></span>    <span class="comment">#   colors = %w(black red green yellow blue pink cyan white default)</span>
 </pre></div>
 </div>
 
@@ -5379,7 +5379,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n335" name="n335">335</a></span>    <span class="comment">#   colors = %w(black red green yellow blue pink cyan white default)</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n335" name="n335">335</a></span>    <span class="comment">#   colors.each { |color| puts colorize(color, color) }</span>
 </pre></div>
 </div>
 
@@ -5395,7 +5395,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n336" name="n336">336</a></span>    <span class="comment">#   colors.each { |color| puts colorize(color, color) }</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n336" name="n336">336</a></span>    <span class="comment">#   colors.each { |color| puts colorize(color, :green, color) }</span>
 </pre></div>
 </div>
 
@@ -5411,7 +5411,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n337" name="n337">337</a></span>    <span class="comment">#   colors.each { |color| puts colorize(color, :green, color) }</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n337" name="n337">337</a></span>    <span class="keyword">def</span> <span class="function">colorize</span>(text, color = <span class="string"><span class="delimiter">&quot;</span><span class="content">default</span><span class="delimiter">&quot;</span></span>, bg = <span class="string"><span class="delimiter">&quot;</span><span class="content">default</span><span class="delimiter">&quot;</span></span>)
 </pre></div>
 </div>
 
@@ -5427,7 +5427,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n338" name="n338">338</a></span>    <span class="keyword">def</span> <span class="function">colorize</span>(text, color = <span class="string"><span class="delimiter">&quot;</span><span class="content">default</span><span class="delimiter">&quot;</span></span>, bg = <span class="string"><span class="delimiter">&quot;</span><span class="content">default</span><span class="delimiter">&quot;</span></span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n338" name="n338">338</a></span>      colors = <span class="string"><span class="delimiter">%w(</span><span class="content">black red green yellow blue pink cyan white default</span><span class="delimiter">)</span></span>
 </pre></div>
 </div>
 
@@ -5443,7 +5443,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n339" name="n339">339</a></span>      colors = <span class="string"><span class="delimiter">%w(</span><span class="content">black red green yellow blue pink cyan white default</span><span class="delimiter">)</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n339" name="n339">339</a></span>      fgcode = <span class="integer">30</span>; bgcode = <span class="integer">40</span>
 </pre></div>
 </div>
 
@@ -5459,7 +5459,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n340" name="n340">340</a></strong></span>      fgcode = <span class="integer">30</span>; bgcode = <span class="integer">40</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n340" name="n340">340</a></strong></span>      tpl = <span class="string"><span class="delimiter">&quot;</span><span class="char">\e</span><span class="content">[%{code}m%{text}</span><span class="char">\e</span><span class="content">[0m</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -5475,7 +5475,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n341" name="n341">341</a></span>      tpl = <span class="string"><span class="delimiter">&quot;</span><span class="char">\e</span><span class="content">[%{code}m%{text}</span><span class="char">\e</span><span class="content">[0m</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n341" name="n341">341</a></span>      cov = lambda { |txt, col, cod| tpl % {<span class="key">text</span>: txt, <span class="key">code</span>: (cod+colors.index(col.to_s))} }
 </pre></div>
 </div>
 
@@ -5491,7 +5491,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n342" name="n342">342</a></span>      cov = lambda { |txt, col, cod| tpl % {<span class="key">text</span>: txt, <span class="key">code</span>: (cod+colors.index(col.to_s))} }
+  <div class="code"><pre><span class="line-numbers"><a href="#n342" name="n342">342</a></span>      ansi = cov.call(text, color, fgcode)
 </pre></div>
 </div>
 
@@ -5507,7 +5507,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n343" name="n343">343</a></span>      ansi = cov.call(text, color, fgcode)
+  <div class="code"><pre><span class="line-numbers"><a href="#n343" name="n343">343</a></span>      ansi = cov.call(ansi, bg, bgcode) <span class="keyword">if</span> bg.to_s != <span class="string"><span class="delimiter">&quot;</span><span class="content">default</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -5523,7 +5523,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n344" name="n344">344</a></span>      ansi = cov.call(ansi, bg, bgcode) <span class="keyword">if</span> bg.to_s != <span class="string"><span class="delimiter">&quot;</span><span class="content">default</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n344" name="n344">344</a></span>      ansi
 </pre></div>
 </div>
 
@@ -5539,7 +5539,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n345" name="n345">345</a></span>      ansi
+  <div class="code"><pre><span class="line-numbers"><a href="#n345" name="n345">345</a></span>    <span class="keyword">end</span>
 </pre></div>
 </div>
 
@@ -5555,7 +5555,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n346" name="n346">346</a></span>    <span class="keyword">end</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n346" name="n346">346</a></span>
 </pre></div>
 </div>
 
@@ -5571,7 +5571,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n347" name="n347">347</a></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n347" name="n347">347</a></span>    <span class="keyword">def</span> <span class="function">show_in_browser</span>(dir)
 </pre></div>
 </div>
 
@@ -5587,7 +5587,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n348" name="n348">348</a></span>    <span class="keyword">def</span> <span class="function">show_in_browser</span>(dir)
+  <div class="code"><pre><span class="line-numbers"><a href="#n348" name="n348">348</a></span>      require <span class="string"><span class="delimiter">&quot;</span><span class="content">launchy</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 
@@ -5603,7 +5603,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n349" name="n349">349</a></span>      require <span class="string"><span class="delimiter">&quot;</span><span class="content">launchy</span><span class="delimiter">&quot;</span></span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n349" name="n349">349</a></span>      require <span class="string"><span class="delimiter">&quot;</span><span class="content">uri</span><span class="delimiter">&quot;</span></span>
 </pre></div>
 </div>
 

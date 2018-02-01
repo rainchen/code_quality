@@ -366,8 +366,8 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
     <div class="information">
       <div class="infobox">
         <div class="total">
-          11 files inspected,
-          58 offenses detected:
+          14 files inspected,
+          25 offenses detected:
         </div>
         <ul class="offenses-list">
           
@@ -389,6 +389,8 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
             
             
             
+            
+            
             <li>
               <a href="#offense_lib/code_quality/railtie.rb">
                 lib/code_quality/railtie.rb - 2 offenses
@@ -399,7 +401,14 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
             
             <li>
               <a href="#offense_lib/tasks/code_quality.rake">
-                lib/tasks/code_quality.rake - 35 offenses
+                lib/tasks/code_quality.rake - 1 offense
+              </a>
+            </li>
+          
+            
+            <li>
+              <a href="#offense_spec/cli_spec.rb">
+                spec/cli_spec.rb - 1 offense
               </a>
             </li>
           
@@ -483,6 +492,10 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
       
       
       
+      
+      
+      
+      
       <div class="offense-box" id="offense_lib/code_quality/railtie.rb">
         <div class="box-title-placeholder"><h3>&nbsp;</h3></div>
         <div class="box-title"><h3>lib/code_quality/railtie.rb - 2 offenses</h3></div>
@@ -519,391 +532,39 @@ TvFXMeuCkZPcaEBLqvgPBhCuiZo8+sAAAAAASUVORK5CYII=
       
       <div class="offense-box" id="offense_lib/tasks/code_quality.rake">
         <div class="box-title-placeholder"><h3>&nbsp;</h3></div>
-        <div class="box-title"><h3>lib/tasks/code_quality.rake - 35 offenses</h3></div>
+        <div class="box-title"><h3>lib/tasks/code_quality.rake - 1 offense</h3></div>
         <div class="offense-reports">
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #3</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
+              <span class="location">Line #290</span> –
+              <span class="severity error">error:</span>
+              <span class="message">Lint/Syntax: unexpected token error
+(Using Ruby 2.1 parser; configure using <code>TargetRubyVersion</code> parameter, under <code>AllCops</code>)</span>
             </div>
             
-            <pre><code>task <span class="highlight convention">:code_quality =&gt;</span> :&quot;code_quality:default&quot; do; end</code></pre>
+            <pre><code>        @audit_tasks[task_name][:report_path] = @report_path<span class="highlight error">&amp;.</span>sub(&quot;tmp/code_quality/&quot;, &quot;&quot;)</code></pre>
             
           </div>
           
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #5</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>  task <span class="highlight convention">:default =&gt;</span> [:summary, :security_audit, :quality_audit, :generate_index] do; end</code></pre>
-            
-          </div>
+        </div>
+      </div>
+      
+      
+      
+      <div class="offense-box" id="offense_spec/cli_spec.rb">
+        <div class="box-title-placeholder"><h3>&nbsp;</h3></div>
+        <div class="box-title"><h3>spec/cli_spec.rb - 1 offense</h3></div>
+        <div class="offense-reports">
           
           <div class="report">
             <div class="meta">
-              <span class="location">Line #14</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>  task <span class="highlight convention">:generate_index =&gt;</span> :helpers do</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #22</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>  task <span class="highlight convention">:security_audit =&gt;</span> [:&quot;security_audit:default&quot;] do; end</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #25</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:default =&gt;</span> [:bundler_audit, :brakeman, :resources] do; end</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #28</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:prepare =&gt;</span> :helpers do</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #38</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:bundler_audit =&gt;</span> :prepare do |task|</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #43</span> –
+              <span class="location">Line #1</span> –
               <span class="severity convention">convention:</span>
               <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
             </div>
             
-            <pre><code>        File.open(@report_path, <span class="highlight convention">&#39;w&#39;</span>) {|f| f.write report }</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #43</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Layout/SpaceInsideBlockBraces: Space between { and | missing.</span>
-            </div>
-            
-            <pre><code>        File.open(@report_path, &#39;w&#39;) <span class="highlight convention">{|</span>f| f.write report }</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #50</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:brakeman =&gt;</span> :prepare do |task|</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #51</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>      require <span class="highlight convention">&#39;json&#39;</span></code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #82</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>  task <span class="highlight convention">:quality_audit =&gt;</span> [:&quot;quality_audit:default&quot;] do; end</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #85</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:default =&gt;</span> [:run_all, :resources] do; end</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #88</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:run_all =&gt;</span> :helpers do</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #107</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Performance/HashEachMethods: Use <code>each_value</code> instead of <code>each</code>. (https://github.com/bbatsov/ruby-style-guide#hash-each)</span>
-            </div>
-            
-            <pre><code>        @audit_tasks.<span class="highlight convention">each</span> do |task_name, report|</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #118</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:prepare =&gt;</span> :helpers do</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #129</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:rubycritic =&gt;</span> :prepare do |task|</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #154</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:rubocop =&gt;</span> :prepare do |task|</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #159</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>          <span class="highlight convention">&#39;github&#39;</span> =&gt; &#39;https://github.com/github/rubocop-github&#39;,</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #159</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>          &#39;github&#39; =&gt; <span class="highlight convention">&#39;https://github.com/github/rubocop-github&#39;</span>,</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #160</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>          <span class="highlight convention">&#39;rails&#39;</span> =&gt; &#39;https://github.com/rails/rails/blob/master/.rubocop.yml&#39;</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #160</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>          &#39;rails&#39; =&gt; <span class="highlight convention">&#39;https://github.com/rails/rails/blob/master/.rubocop.yml&#39;</span></code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #164</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>        config_formula = options.fetch(:config_formula, <span class="highlight convention">&#39;github&#39;</span>)</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #165</span> –
-              <span class="severity warning">warning:</span>
-              <span class="message">Lint/DeprecatedClassMethods: <code>File.exists?</code> is deprecated in favor of <code>File.exist?</code>.</span>
-            </div>
-            
-            <pre><code>        if config_formula &amp;&amp; File.<span class="highlight warning">exists?</span>(config_formula)</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #201</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/HashSyntax: Use the new Ruby 1.9 hash syntax. (https://github.com/bbatsov/ruby-style-guide#hash-literals)</span>
-            </div>
-            
-            <pre><code>    task <span class="highlight convention">:metric_fu =&gt;</span> :prepare do |task|</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #226</span> –
-              <span class="severity warning">warning:</span>
-              <span class="message">Lint/DeprecatedClassMethods: <code>Dir.exists?</code> is deprecated in favor of <code>Dir.exist?</code>.</span>
-            </div>
-            
-            <pre><code>        FileUtils.remove_dir(report_path) if Dir.<span class="highlight warning">exists?</span> report_path</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #235</span> –
-              <span class="severity warning">warning:</span>
-              <span class="message">Lint/DeprecatedClassMethods: <code>File.exists?</code> is deprecated in favor of <code>File.exist?</code>.</span>
-            </div>
-            
-            <pre><code>        if File.<span class="highlight warning">exists?</span> report_result_path</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #236</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>          require <span class="highlight convention">&#39;yaml&#39;</span></code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #298</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>      require <span class="highlight convention">&#39;benchmark&#39;</span></code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #311</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Layout/SpaceBeforeBlockBraces: Space missing to the left of {.</span>
-            </div>
-            
-            <pre><code>      [[60, :s], [60, :m], [24, :h], [1000, :d]].map<span class="highlight convention">{</span> |count, name|</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #316</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>      }.compact.reverse.join(<span class="highlight convention">&#39; &#39;</span>).chomp(&#39; 0s&#39;)</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #316</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>      }.compact.reverse.join(&#39; &#39;).chomp(<span class="highlight convention">&#39; 0s&#39;</span>)</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #340</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/Semicolon: Do not use semicolons to terminate expressions. (https://github.com/bbatsov/ruby-style-guide#no-semicolon)</span>
-            </div>
-            
-            <pre><code>      fgcode = 30<span class="highlight convention">;</span> bgcode = 40</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #372</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping. (https://github.com/bbatsov/ruby-style-guide#consistent-string-literals)</span>
-            </div>
-            
-            <pre><code>      File.open(index_path, <span class="highlight convention">&#39;w&#39;</span>) {|f| f.write output }</code></pre>
-            
-          </div>
-          
-          <div class="report">
-            <div class="meta">
-              <span class="location">Line #372</span> –
-              <span class="severity convention">convention:</span>
-              <span class="message">Layout/SpaceInsideBlockBraces: Space between { and | missing.</span>
-            </div>
-            
-            <pre><code>      File.open(index_path, &#39;w&#39;) <span class="highlight convention">{|</span>f| f.write output }</code></pre>
+            <pre><code>require <span class="highlight convention">&#39;spec_helper&#39;</span></code></pre>
             
           </div>
           
