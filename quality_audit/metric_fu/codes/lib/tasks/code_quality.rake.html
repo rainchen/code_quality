@@ -2387,7 +2387,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n148" name="n148">148</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:rubocop max_offenses=100</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n148" name="n148">148</a></span>    <span class="comment"># e.g.: rake code_quality:quality_audit:rubocop rubocop_max_offenses=100</span>
 </pre></div>
 </div>
 
@@ -2451,7 +2451,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n152" name="n152">152</a></span>    <span class="comment">#   max_offenses: if config max_offenses then audit it with detected offenses number in report, e.g.: max_offenses=100</span>
+  <div class="code"><pre><span class="line-numbers"><a href="#n152" name="n152">152</a></span>    <span class="comment">#   rubocop_max_offenses: if config rubocop_max_offenses then audit it with detected offenses number in report, e.g.: rubocop_max_offenses=100</span>
 </pre></div>
 </div>
 
@@ -2499,7 +2499,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n155" name="n155">155</a></span>        options = options_from_env(<span class="symbol">:config_formula</span>, <span class="symbol">:cli_options</span>, <span class="symbol">:max_offenses</span>)
+  <div class="code"><pre><span class="line-numbers"><a href="#n155" name="n155">155</a></span>        options = options_from_env(<span class="symbol">:config_formula</span>, <span class="symbol">:cli_options</span>, <span class="symbol">:rubocop_max_offenses</span>)
 </pre></div>
 </div>
 
@@ -2899,7 +2899,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><strong><a href="#n180" name="n180">180</a></strong></span>        <span class="comment"># if config max_offenses then audit it with detected offenses number in report</span>
+  <div class="code"><pre><span class="line-numbers"><strong><a href="#n180" name="n180">180</a></strong></span>        <span class="comment"># if config rubocop_max_offenses then audit it with detected offenses number in report</span>
 </pre></div>
 </div>
 
@@ -2915,7 +2915,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n181" name="n181">181</a></span>        <span class="keyword">if</span> options[<span class="symbol">:max_offenses</span>]
+  <div class="code"><pre><span class="line-numbers"><a href="#n181" name="n181">181</a></span>        <span class="keyword">if</span> options[<span class="symbol">:rubocop_max_offenses</span>]
 </pre></div>
 </div>
 
@@ -2963,7 +2963,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n184" name="n184">184</a></span>            max_offenses = options[<span class="symbol">:max_offenses</span>].to_i
+  <div class="code"><pre><span class="line-numbers"><a href="#n184" name="n184">184</a></span>            max_offenses = options[<span class="symbol">:rubocop_max_offenses</span>].to_i
 </pre></div>
 </div>
 
@@ -2979,7 +2979,7 @@
           </td>
           <td valign='top'>
             <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n185" name="n185">185</a></span>            audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="content">Detected offenses </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(detected_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is more then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(max_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a lower </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">max_offenses</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> detected_offenses &gt; max_offenses
+  <div class="code"><pre><span class="line-numbers"><a href="#n185" name="n185">185</a></span>            audit_faild <span class="string"><span class="delimiter">&quot;</span><span class="content">Detected offenses </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(detected_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content"> is more then </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(max_offenses, <span class="symbol">:yellow</span>)<span class="inline-delimiter">}</span></span><span class="content">, must improve your code quality or set a lower </span><span class="inline"><span class="inline-delimiter">#{</span>colorize(<span class="string"><span class="delimiter">&quot;</span><span class="content">rubocop_max_offenses</span><span class="delimiter">&quot;</span></span>, <span class="symbol">:black</span>, <span class="symbol">:white</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span> <span class="keyword">if</span> detected_offenses &gt; max_offenses
 </pre></div>
 </div>
 
