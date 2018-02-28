@@ -145,14 +145,14 @@ namespace :code_quality do
     end
 
     desc "rubocop - audit coding style"
-    # e.g.: rake code_quality:quality_audit:rubocop max_offenses=100
+    # e.g.: rake code_quality:quality_audit:rubocop rubocop_max_offenses=100
     # options:
     #   config_formula: use which formula for config, supports "github, "rails" or path_to_your_local_config.yml, default is "github"
     #   cli_options: pass extract options, e.g.: cli_options="--show-cops"
-    #   max_offenses: if config max_offenses then audit it with detected offenses number in report, e.g.: max_offenses=100
+    #   rubocop_max_offenses: if config rubocop_max_offenses then audit it with detected offenses number in report, e.g.: rubocop_max_offenses=100
     task :rubocop => :prepare do |task|
       run_audit task, "rubocop - RuboCop is a Ruby static code analyzer. Out of the box it will enforce many of the guidelines outlined in the community Ruby Style Guide." do
-        options = options_from_env(:config_formula, :cli_options, :max_offenses)
+        options = options_from_env(:config_formula, :cli_options, :rubocop_max_offenses)
 
         config_formulas = {
           'github' => 'https://github.com/github/rubocop-github',
@@ -177,12 +177,12 @@ namespace :code_quality do
         puts "Report generated to #{report_path}"
         show_in_browser File.realpath(report_path)
 
-        # if config max_offenses then audit it with detected offenses number in report
-        if options[:max_offenses]
+        # if config rubocop_max_offenses then audit it with detected offenses number in report
+        if options[:rubocop_max_offenses]
           if report[-20..-1] =~ /(\d+) *Total/
             detected_offenses = $1.to_i
-            max_offenses = options[:max_offenses].to_i
-            audit_faild "Detected offenses #{colorize(detected_offenses, :yellow)} is more then #{colorize(max_offenses, :yellow)}, must improve your code quality or set a lower #{colorize("max_offenses", :black, :white)}" if detected_offenses > max_offenses
+            max_offenses = options[:rubocop_max_offenses].to_i
+            audit_faild "Detected offenses #{colorize(detected_offenses, :yellow)} is more then #{colorize(max_offenses, :yellow)}, must improve your code quality or set a lower #{colorize("rubocop_max_offenses", :black, :white)}" if detected_offenses > max_offenses
           end
         end
       end

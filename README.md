@@ -182,11 +182,11 @@ output example:
 ##### options for rubocop
 
 ```
-# e.g.: code_quality quality_audit:rubocop max_offenses=100
+# e.g.: code_quality quality_audit:rubocop rubocop_max_offenses=100
 # options:
 #   config_formula: use which formula for config, supports "github, "rails" or path_to_your_local_config.yml, default is "github"
 #   cli_options: pass extract options, e.g.: cli_options="--show-cops"
-#   max_offenses: if config max_offenses then audit it with detected offenses number in report, e.g.: max_offenses=100
+#   rubocop_max_offenses: if config rubocop_max_offenses then audit it with detected offenses number in report, e.g.: rubocop_max_offenses=100
 ```
 
 output example:
@@ -215,7 +215,7 @@ output example:
 
 ```
 # run all at once
-code_quality quality_audit lowest_score=90 max_offenses=100 metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=10 roodi_max_offenses=10
+code_quality quality_audit lowest_score=90 rubocop_max_offenses=100 metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=10 roodi_max_offenses=10
 ```
 
 #### work with CI

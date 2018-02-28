@@ -55,20 +55,20 @@ RSpec.describe CodeQuality do
 
     # Audit task should return non-zero exit status and showing failure reason when passing an audit value option and the value is lower than the result in report
     it "return non-zero exit status if failed" do
-      expect { run_rake "code_quality:quality_audit:rubocop", env: "max_offenses=0" }.to raise_error(SystemExit).and output.to_stdout.and output(/max_offenses/).to_stderr
+      expect { run_rake "code_quality:quality_audit:rubocop", env: "rubocop_max_offenses=0" }.to raise_error(SystemExit).and output.to_stdout.and output(/rubocop_max_offenses/).to_stderr
     end
 
     context 'quality_audit with option' do
       it "fail_fast=false" do
         expect {
-          run_rake "code_quality:quality_audit", env: "fail_fast=false max_offenses=0 lowest_score=101"
-        }.to raise_error(SystemExit).and output.to_stdout.and output(/(lowest_score){1}.*(max_offenses){1}/m).to_stderr
+          run_rake "code_quality:quality_audit", env: "fail_fast=false rubocop_max_offenses=0 lowest_score=101"
+        }.to raise_error(SystemExit).and output.to_stdout.and output(/(lowest_score){1}.*(rubocop_max_offenses){1}/m).to_stderr
       end
 
       it "fail_fast=true" do
         expect {
-          run_rake "code_quality:quality_audit", env: "fail_fast=true max_offenses=0 lowest_score=101"
-        }.to raise_error(SystemExit).and output.to_stdout.and output(/(lowest_score){1}.*(max_offenses){0}/m).to_stderr
+          run_rake "code_quality:quality_audit", env: "fail_fast=true rubocop_max_offenses=0 lowest_score=101"
+        }.to raise_error(SystemExit).and output.to_stdout.and output(/(lowest_score){1}.*(rubocop_max_offenses){0}/m).to_stderr
       end
 
       it "generate_index=true" do

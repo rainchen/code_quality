@@ -32,13 +32,13 @@ RSpec.describe CodeQuality::CLI do
     describe "return exit status" do
       it "return zero exit status if passed" do
         expect { system "#{cli} quality_audit:rubocop" }.to output.to_stdout_from_any_process.and \
-          output(/(AUDIT FAILED){0}.*(max_offenses){0}/m).to_stderr_from_any_process
+          output(/(AUDIT FAILED){0}.*(rubocop_max_offenses){0}/m).to_stderr_from_any_process
         expect($?.exitstatus).to be_zero
       end
 
       it "return non-zero exit status if failed" do
-        expect { system "#{cli} quality_audit:rubocop max_offenses=0" }.to output.to_stdout_from_any_process.and \
-          output(/(AUDIT FAILED){1}.*(max_offenses){1}/m).to_stderr_from_any_process
+        expect { system "#{cli} quality_audit:rubocop rubocop_max_offenses=0" }.to output.to_stdout_from_any_process.and \
+          output(/(AUDIT FAILED){1}.*(rubocop_max_offenses){1}/m).to_stderr_from_any_process
         expect($?.exitstatus).not_to be_zero
       end
     end
