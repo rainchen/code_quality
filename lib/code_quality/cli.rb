@@ -39,7 +39,7 @@ module CodeQuality
 
         OptionParser.new do |opts|
           opts.separator "Run code_quality for a ruby/rails project, e.g.:"
-          opts.separator "    code_quality lowest_score=90 max_offenses=100 metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=10 roodi_max_offenses=10"
+          opts.separator "    code_quality lowest_score=90 rubocop_max_offenses=100 metrics=stats,rails_best_practices,roodi rails_best_practices_max_offenses=10 roodi_max_offenses=10"
           opts.separator ""
           opts.separator "Show available tasks:"
           opts.separator "    code_quality -T"
