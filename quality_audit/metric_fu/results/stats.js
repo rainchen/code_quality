@@ -1,3 +1,3 @@
         var graph_title = 'Stats: LOC & LOT';
-        var graph_series = [{name: 'LOC', data: [89]},{name: 'LOT', data: [144]}];
-        var graph_labels = {"0":"2/28"};
+        var graph_series = [{name: 'LOC', data: [95]},{name: 'LOT', data: [140]}];
+        var graph_labels = {"0":"4/12"};
