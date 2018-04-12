@@ -87,7 +87,7 @@ namespace :code_quality do
     # default tasks
     task :default => [:run_all, :resources] do; end
 
-    desc "run all audit tasks"
+    # desc "run all audit tasks"
     task :run_all => :helpers do
       options = options_from_env(:fail_fast, :generate_index)
       fail_fast = options.fetch(:fail_fast, "false")
