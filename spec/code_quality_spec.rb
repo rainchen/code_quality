@@ -58,6 +58,19 @@ RSpec.describe CodeQuality do
       expect { run_rake "code_quality:quality_audit:rubocop", env: "rubocop_max_offenses=0" }.to raise_error(SystemExit).and output.to_stdout.and output(/rubocop_max_offenses/).to_stderr
     end
 
+    context 'security_audit with option' do
+      # TODO: capture brakeman output
+      it "brakeman_options=" do
+        expect {
+          run_rake "code_quality:security_audit:brakeman"
+        }.to output(/Templates: 1/).to_stdout_from_any_process
+
+        expect {
+          run_rake "code_quality:security_audit:brakeman", env: 'brakeman_options="--skip-files app/views/"'
+        }.to output(/Templates: 0/).to_stdout_from_any_process
+      end
+    end
+
     context 'quality_audit with option' do
       it "fail_fast=false" do
         expect {

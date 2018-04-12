@@ -47,11 +47,14 @@ namespace :code_quality do
     end
 
     desc "brakeman"
+    # options:
+    #   brakeman_options: pass extract CLI options, e.g.: brakeman_options="--skip-files lib/templates/"
     task :brakeman => :prepare do |task|
+      options = options_from_env(:brakeman_options)
       require 'json'
       run_audit task, "Brakeman audit - checks Ruby on Rails applications for security vulnerabilities" do
         @report_path = "#{report_dir}/brakeman-report.txt"
-        `brakeman -o #{@report_path} -o #{report_dir}/brakeman-report.json`
+        `brakeman -o #{@report_path} -o #{report_dir}/brakeman-report.json #{options[:brakeman_options]} .`
         puts `cat #{@report_path}`
         report = JSON.parse(File.read("#{report_dir}/brakeman-report.json"))
         audit_faild "There are #{report["errors"].size} errors, must fix them ASAP." if report["errors"].any?

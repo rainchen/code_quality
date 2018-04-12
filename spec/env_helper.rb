@@ -15,28 +15,16 @@ module EnvHelper
   end
 
   # convert a env text to hash
-  # e.g.: parse_env("a=b c=d") => {"a" => "b", "c" => "d"}
+  # e.g.: parse_env %{ a=b c="d" e='f' g="h i" foo="bar=' baz='quux" brakeman_options="--skip-files app/views/" }
+  # => {"a"=>"b", "c"=>"d", "e"=>"f", "g"=>"h i", "foo"=>"bar=' baz='quux", "brakeman_options"=>"--skip-files app/views/"}
   # inspired by Dotenv::Parser.call(environment_text).each { |k,v| ENV[k] = v }
   # https://github.com/bkeepers/dotenv/blob/master/lib/dotenv/parser.rb
   def parse_env(env_text)
-    reg = /
-      ([\w\.]+)         # key
-      (?:\s*=\s*|:\s+?) # separator
-      (                 # optional value begin
-        '(?:\'|[^'])*'  #   single quoted value
-        |               #   or
-        "(?:\"|[^"])*"  #   double quoted value
-        |               #   or
-        [^#\n]+         #   unquoted value
-      )?                # value end
-      \s*
-    /x
+    # test: http://rubular.com/r/9sTawyW4Ix
+    text_reg = /(?<key>\b\w+\b)\s*=\s*(?:"(?<v1>[^"]*)"|'(?<v2>[^']*)'|(?<v3>[^"'<>\s]+))/
     hash = {}
-    env_text.split(" ").each do |line|
-      if (match = line.match(reg))
-        key, value = match.captures
-        hash[key] = value
-      end
+    env_text.scan(text_reg).each do |key, v1, v2, v3|
+      hash[key] = [v1, v2, v3].compact.join
     end
     hash
   end
