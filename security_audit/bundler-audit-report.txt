@@ -1,4 +1,4 @@
 Updating ruby-advisory-db ...
 Updated ruby-advisory-db
-ruby-advisory-db: 304 advisories
+ruby-advisory-db: 322 advisories
 No vulnerabilities found
