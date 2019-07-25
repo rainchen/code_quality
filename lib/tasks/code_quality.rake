@@ -36,9 +36,11 @@ namespace :code_quality do
 
     desc "bundler audit"
     task :bundler_audit => :prepare do |task|
+      options = options_from_env(:bundler_audit_options)
+
       run_audit task, "bundler audit - checks for vulnerable versions of gems in Gemfile.lock" do
         # Update the ruby-advisory-db and check Gemfile.lock
-        report = `bundle audit check --update`
+        report = `bundle audit check --update #{options[:bundler_audit_options]}`
         @report_path = "#{report_dir}/bundler-audit-report.txt"
         File.open(@report_path, 'w') {|f| f.write report }
         puts report

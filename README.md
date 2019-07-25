@@ -90,6 +90,13 @@ output example:
 
 ![](doc/imgs/code_quality_security_audit_failed_example.png)
 
+#### options for security_audit:
+
+```
+# e.g.: code_quality security_audit bundler_audit_options="--ignore CVE-2015-9284"
+# options:
+#   bundler_audit_options: pass extract options, e.g.: bundler_audit_options="--ignore CVE-2015-9284 --verbose"
+```
 
 #### work with CI
 
