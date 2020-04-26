@@ -59,6 +59,16 @@ RSpec.describe CodeQuality do
     end
 
     context 'security_audit with option' do
+      it "bundler_audit_options=" do
+        expect {
+          run_rake "code_quality:security_audit:bundler_audit"
+        }.to output(/No vulnerabilities found/).to_stdout_from_any_process
+
+        expect {
+          run_rake "code_quality:security_audit:bundler_audit", env: 'bundler_audit_options="--ignore CVE-2020-5267 CVE-2020-10663"'
+        }.to output(/No vulnerabilities found/).to_stdout_from_any_process
+      end
+
       # TODO: capture brakeman output
       it "brakeman_options=" do
         expect {
