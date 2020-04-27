@@ -35,11 +35,12 @@ namespace :code_quality do
     end
 
     desc "bundler audit"
+    # Update the ruby-advisory-db and check Gemfile.lock
+    # options:
+    #   bundler_audit_options: pass extract CLI options, e.g.: bundler_audit_options="--ignore CVE-2020-5267 CVE-2020-10663"
     task :bundler_audit => :prepare do |task|
       options = options_from_env(:bundler_audit_options)
-
       run_audit task, "bundler audit - checks for vulnerable versions of gems in Gemfile.lock" do
-        # Update the ruby-advisory-db and check Gemfile.lock
         report = `bundle audit check --update #{options[:bundler_audit_options]}`
         @report_path = "#{report_dir}/bundler-audit-report.txt"
         File.open(@report_path, 'w') {|f| f.write report }

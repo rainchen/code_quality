@@ -21,11 +21,11 @@ stages:
   - code_audit
   - deploy
 
-sudo: false
 language: ruby
 rvm:
-  - 2.4.4
+  # - 2.4.4
   - 2.5.1
+  - 2.6.0
 before_install: gem install bundler
 
 # config GitHub OAuth Token
@@ -55,9 +55,9 @@ deploy:
 
   # publish generated files to GitHub pages
   - provider: script
-    skip_cleanup: true
+    # skip_cleanup: true
     script: bin/travis-update-gh-pages.sh
     on:
       branch: master
       tags: true
-    condition: $TRAVIS_PULL_REQUEST = "false"
+    # condition: $TRAVIS_PULL_REQUEST = "false"

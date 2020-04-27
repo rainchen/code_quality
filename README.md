@@ -126,11 +126,17 @@ Then Gitlab sends notification with the failure info, for example:
 ```
 # bundler audit - checks for vulnerable versions of gems in Gemfile.lock
 code_quality security_audit:bundler_audit
+
+# with bundler_audit cli options
+code_quality security_audit:bundler_audit bundler_audit_options="--ignore CVE-2020-5267 CVE-2020-10663"
 ```
 
 ```
 # brakeman audit - checks Ruby on Rails applications for security vulnerabilities
 code_quality security_audit:brakeman
+
+# with brakeman cli options
+code_quality security_audit:brakeman brakeman_options="--skip-files app/views/"
 ```
 
 ```
