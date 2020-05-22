@@ -3,7 +3,7 @@
 Run code quality and security audit report with one command `code_quality`.
 
 [![Gem Version](https://badge.fury.io/rb/code_quality.svg)](https://badge.fury.io/rb/code_quality)
-[![Build Status](https://travis-ci.org/rainchen/code_quality.svg)](https://travis-ci.org/rainchen/code_quality)
+[![Build Status](https://travis-ci.com/rainchen/code_quality.svg)](https://travis-ci.com/rainchen/code_quality)
 [![HitCount](http://hits.dwyl.io/rainchen/code_quality.svg)](http://hits.dwyl.io/rainchen/code_quality)
 
 ## Principle

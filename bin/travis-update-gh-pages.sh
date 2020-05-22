@@ -18,11 +18,11 @@ if [ ${TRAVIS} = "true" ]; then
   cp -Rf $HOME/tmp/code_quality/* .
 
   #setup git user
-  git config user.email "travis@travis-ci.org"
+  git config user.email "travis@travis-ci.com"
   git config user.name "Travis CI"
 
   #add, commit and push files
-  travis_build_url="https://travis-ci.org/${TRAVIS_REPO_SLUG}/builds/${TRAVIS_BUILD_ID}"
+  travis_build_url="https://travis-ci.com/${TRAVIS_REPO_SLUG}/builds/${TRAVIS_BUILD_ID}"
   git add -f .
   git commit -m "Travis CI build $travis_build_url pushed to gh-pages"
   git push -fq origin gh-pages > /dev/null
