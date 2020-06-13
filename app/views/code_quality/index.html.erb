@@ -8,7 +8,7 @@
 
 <ul>
 <% @audit_tasks.each do |task_name, report| %>
-  <li>[<%= report[:failure].empty? ? "✓" : "✗" %>] <a href="<%= report[:report_path] %>"><%= task_name %></a> <%= report[:failure] %></li>
+  <li>[<%= report[:failure].empty? ? "&#x2713;" : "&#x2717;" %>] <a href="<%= report[:report_path] %>"><%= task_name %></a> <%= report[:failure] %></li>
 <% end %>
 </ul>
 
